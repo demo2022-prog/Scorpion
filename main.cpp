@@ -1,3 +1,5 @@
+// автор Mr.Escow
+
 #include "mainwindow.h"
 
 #include <QtWidgets/QApplication>
