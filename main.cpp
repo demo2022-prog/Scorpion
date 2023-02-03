@@ -1,5 +1,5 @@
-// автор Mr.Escow
-// author  demo2022-prog
+
+// -=Автор Mike=-
 
 #include "mainwindow.h"
 
@@ -12,3 +12,4 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+
