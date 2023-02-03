@@ -1,4 +1,4 @@
-// Автор Mike
+// Автор Mike 
 
 #include "mainwindow.h"
 
