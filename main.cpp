@@ -1,4 +1,8 @@
+
 // -=Автор Mike=-
+// автор Mr.Escow
+// author  demo2022-prog
+
 
 #include "mainwindow.h"
 
