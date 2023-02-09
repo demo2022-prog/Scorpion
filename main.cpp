@@ -1,6 +1,7 @@
 // автор Mr.Escow
 // author  demo2022-prog
 // create by John_29
+// checked by qmanboy
 
 #include "mainwindow.h"
 
