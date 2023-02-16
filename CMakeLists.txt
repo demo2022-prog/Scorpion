@@ -32,21 +32,27 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        icons.qrc
 )
+
+list (APPEND RESOURCES icons.qrc)
+qt5_add_resources (RCC_SOURCES ${RESOURCES})
+
+add_library(res ${RCC_SOURCES} ${SOURCES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Scorpion
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${PROJECT_SOURCES}        
     )
 else()
     if(ANDROID)
         add_library(Scorpion SHARED
-            ${PROJECT_SOURCES}
+            ${PROJECT_SOURCES}            
         )
     else()
         add_executable(Scorpion
-            ${PROJECT_SOURCES}
+            ${PROJECT_SOURCES}            
         )
     endif()
 endif()

@@ -1,11 +1,18 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+#include <QGridLayout>
+#include <QLabel>
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    mdiArea = new QMdiArea(this);
+    mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    setCentralWidget(mdiArea);
 }
 
 MainWindow::~MainWindow()
@@ -13,3 +20,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionAddWindow_triggered()
+{
+    QWidget *widget = new QWidget(mdiArea);
+    QGridLayout *gridLayout = new QGridLayout(widget);
+    widget->setLayout(gridLayout);
+    QLabel *label = new QLabel("Hello, I am sub window!!!", widget);
+    gridLayout->addWidget(label);
+
+    mdiArea->addSubWindow(widget);
+    widget->setWindowTitle("Sub Window");
+    widget->show();
+}
