@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "MainMenu.h"
+
 #include <QGridLayout>
 #include <QLabel>
 
@@ -13,6 +15,11 @@ MainWindow::MainWindow(QWidget *parent) :
     mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setCentralWidget(mdiArea);
+
+
+    mainMenu = new MainMenu(this);
+
+
 }
 
 MainWindow::~MainWindow()
