@@ -12,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     viewDockuments = new MdiArea(this);
     setCentralWidget(viewDockuments);
 
+    viewDockuments->test();
+    viewDockuments->test();
+    viewDockuments->test();
+    viewDockuments->test();
+
 }
 
 MainWindow::~MainWindow()

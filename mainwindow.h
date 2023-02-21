@@ -16,7 +16,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionAddWindow_triggered();
 
 private:
     Ui::MainWindow *ui;
