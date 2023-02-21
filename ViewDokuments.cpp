@@ -19,6 +19,7 @@ MdiArea::MdiArea(QWidget *parent): ViewDokuments{parent}
     mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
+    mdiArea->setDocumentMode(true);
 }
 
 
