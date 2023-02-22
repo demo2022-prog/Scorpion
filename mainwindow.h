@@ -21,6 +21,8 @@ private:
     Ui::MainWindow *ui;
 
     class ViewDokuments* viewDockuments;
+
+    QString captionWindow = ":: Scorpion v.1.0 ::";
 };
 
 #endif // MAINWINDOW_H

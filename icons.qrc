@@ -1,5 +1,29 @@
 <RCC>
     <qresource prefix="/">
         <file>images/new.png</file>
+        <file>images/Icons/about.png</file>
+        <file>images/Icons/arrow-down.png</file>
+        <file>images/Icons/CloseFile.png</file>
+        <file>images/Icons/crown.png</file>
+        <file>images/Icons/exit.png</file>
+        <file>images/Icons/MdiView.png</file>
+        <file>images/Icons/new.png</file>
+        <file>images/Icons/notesHTML.png</file>
+        <file>images/Icons/open.png</file>
+        <file>images/Icons/openOnlyRead.png</file>
+        <file>images/Icons/printer.png</file>
+        <file>images/Icons/save.png</file>
+        <file>images/Icons/SaveAs.png</file>
+        <file>images/Icons/search.png</file>
+        <file>images/Icons/settings.png</file>
+        <file>images/Icons/TabView.png</file>
+        <file>images/Icons/textCenter.png</file>
+        <file>images/Icons/textLeft.png</file>
+        <file>images/Icons/textRight.png</file>
+        <file>images/Icons/typography.png</file>
+        <file>images/Icons/typographyCopy.png</file>
+        <file>images/Icons/typographyCopyDown.png</file>
+        <file>images/Icons/typographyCopyUp.png</file>
+        <file>images/Icons/typographyMouse.png</file>
     </qresource>
 </RCC>

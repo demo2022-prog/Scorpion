@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    
+    MainWindow::setWindowTitle(captionWindow);
+    MainWindow::setWindowState(Qt::WindowMaximized);
 
     auto mainWgt = new QWidget(this);
     auto mainLayout = new QVBoxLayout(this);
