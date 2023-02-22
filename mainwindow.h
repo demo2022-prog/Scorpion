@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMdiArea>
 
 
 namespace Ui {
@@ -18,13 +17,16 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionAddWindow_triggered();
 
 private:
     Ui::MainWindow *ui;
-    QMdiArea * mdiArea;
 
     class MainMenu* mainMenu;
+
+    class ViewDokuments* viewDockuments;
+
+    QString captionWindow = ":: Scorpion v.1.0 ::";
+
 };
 
 #endif // MAINWINDOW_H
