@@ -22,6 +22,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QMdiArea * mdiArea;
+    QString captionWindow = ":: Scorpion v.1.0 ::";
 };
 
 #endif // MAINWINDOW_H
