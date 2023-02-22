@@ -33,6 +33,8 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         icons.qrc
+        ViewDokuments.h
+        ViewDokuments.cpp
 )
 
 list (APPEND RESOURCES icons.qrc)
