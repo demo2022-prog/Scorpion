@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QGridLayout>
+#include <QLabel>
 #include <QVBoxLayout>
 
+#include "MainMenu.h"
 #include "ViewDokuments.h"
 
-#include <QPushButton> // вместо MainMenu
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,10 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     auto mainWgt = new QWidget(this);
     auto mainLayout = new QVBoxLayout(this);
 
-    auto button = new QPushButton("MainMenu",this); // вместо MainMenu
+    mainMenu = new MainMenu(this);
     viewDockuments = new MdiArea(this);
 
-    mainLayout->addWidget(button); // вместо MainMenu
+    mainLayout->addWidget(mainMenu);
     mainLayout->addWidget(viewDockuments);
 
     mainWgt->setLayout(mainLayout);

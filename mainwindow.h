@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -20,9 +21,12 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    class MainMenu* mainMenu;
+
     class ViewDokuments* viewDockuments;
 
     QString captionWindow = ":: Scorpion v.1.0 ::";
+
 };
 
 #endif // MAINWINDOW_H

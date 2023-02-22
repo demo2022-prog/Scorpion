@@ -29,12 +29,19 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
+        
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        
         icons.qrc
+
+        MainMenu.h
+        MainMenu.cpp
+
         ViewDokuments.h
         ViewDokuments.cpp
+
 )
 
 list (APPEND RESOURCES icons.qrc)
