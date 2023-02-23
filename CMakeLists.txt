@@ -42,6 +42,13 @@ set(PROJECT_SOURCES
         ViewDokuments.h
         ViewDokuments.cpp
 
+        BusinessLogic.h
+        BusinessLogic.cpp
+
+        AboutWidget.h
+        AboutWidget.cpp
+        AboutWidget.ui
+
 )
 
 list (APPEND RESOURCES icons.qrc)

@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
+#include <BusinessLogic.h>
+
 #include "MainMenu.h"
 #include "ViewDokuments.h"
 
@@ -18,11 +20,15 @@ MainWindow::MainWindow(QWidget *parent) :
     MainWindow::setWindowTitle(captionWindow);
     MainWindow::setWindowState(Qt::WindowMaximized);
 
-    auto mainWgt = new QWidget(this);
-    auto mainLayout = new QVBoxLayout(this);
-
+    // Инициализация компонентов
+    businessLogic = new BusinessLogic(this);
     mainMenu = new MainMenu(this);
     viewDockuments = new MdiArea(this);
+
+
+    // Размещение графических компонентов
+    auto mainWgt = new QWidget(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     mainLayout->addWidget(mainMenu);
     mainLayout->addWidget(viewDockuments);
@@ -30,10 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mainWgt->setLayout(mainLayout);
     setCentralWidget(mainWgt);
 
-    viewDockuments->test();
-    viewDockuments->test();
-    viewDockuments->test();
-    viewDockuments->test();
+    // Связи компонентов
+    connect(mainMenu,SIGNAL(about()),businessLogic, SLOT(showAbout()));
 
 }
 
