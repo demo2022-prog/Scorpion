@@ -25,5 +25,7 @@
         <file>images/Icons/typographyCopyDown.png</file>
         <file>images/Icons/typographyCopyUp.png</file>
         <file>images/Icons/typographyMouse.png</file>
+        <file>About/License.txt</file>
+        <file>About/Team.txt</file>
     </qresource>
 </RCC>

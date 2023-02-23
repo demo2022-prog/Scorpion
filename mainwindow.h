@@ -21,6 +21,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    class BusinessLogic* businessLogic;
+
     class MainMenu* mainMenu;
 
     class ViewDokuments* viewDockuments;
