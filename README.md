@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 7.4.5.1 (Linux)"/>
-	<meta name="created" content="2023-02-24T18:41:38.322696958"/>
-	<meta name="changed" content="2023-02-24T19:20:18.279945406"/>
-	<style type="text/css">
-		@page { size: 21.59cm 27.94cm; margin: 2cm }
-		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent; background: transparent }
-		a:link { color: #000080; text-decoration: underline }
-		a:visited { color: #800000; text-decoration: underline }
-	</style>
-</head>
+<body>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+ <b>====== Scorpion ======</b></p>
+</body>
 <body lang="ru-RU" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
 <b>Описание</b></p>
-<p style="line-height: 100%; margin-bottom: 0cm"><br/>
 
-</p>
 <p style="line-height: 100%; margin-bottom: 0cm"><b>Scorpion</b>
 свободный многооконный текстовый
 редактор с открытым исходным кодом.</p>
