@@ -51,6 +51,8 @@ set(PROJECT_SOURCES
 
 )
 
+configure_file(images/logo.png images/logo.png COPYONLY)
+
 list (APPEND RESOURCES icons.qrc)
 qt5_add_resources (RCC_SOURCES ${RESOURCES})
 

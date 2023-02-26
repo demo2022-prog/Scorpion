@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     
     MainWindow::setWindowTitle(captionWindow);
+    MainWindow::setWindowIcon(QIcon(iconWindow));
     MainWindow::setWindowState(Qt::WindowMaximized);
 
     // Инициализация компонентов

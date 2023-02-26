@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class MainWindow;
@@ -27,7 +27,8 @@ private:
 
     class ViewDokuments* viewDockuments;
 
-    QString captionWindow = ":: Scorpion v.1.0 ::";
+    const QString captionWindow = ":: Scorpion v.1.0 ::";
+    const QString iconWindow = "./images/logo.png";
 
 };
 
