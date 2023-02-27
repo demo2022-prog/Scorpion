@@ -34,7 +34,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         
-        icons.qrc
+        #icons.qrc
 
         MainMenu.h
         MainMenu.cpp
@@ -68,7 +68,8 @@ else()
         )
     else()
         add_executable(Scorpion
-            ${PROJECT_SOURCES}            
+            ${PROJECT_SOURCES}
+            ${RCC_SOURCES}
         )
     endif()
 endif()
