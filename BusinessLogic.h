@@ -11,9 +11,12 @@ public:
     ~BusinessLogic();
 
 signals:
+    void newDocument(const class Document* document);
 
 public slots:
     void showAbout();
+
+    void createNewDocument();
 
 private:
     class AboutWidget* aboutWgt;

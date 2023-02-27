@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),businessLogic, SLOT(showAbout()));
+    connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
+    connect(businessLogic, SIGNAL(newDocument(const class Document*)), viewDockuments, SLOT(addDocument(const class Document*)));
 
     for(int i = 0; i < 10; i++){
         viewDockuments->test();
