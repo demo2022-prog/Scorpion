@@ -3,31 +3,28 @@
 
 #include <QWidget>
 
-class ViewDokuments : public QWidget
+class ViewDokuments
 {
-    Q_OBJECT
-
 public:
-    explicit ViewDokuments(QWidget *parent = nullptr);
-
     virtual void test() = 0;
-signals:
-
 
 };
 
-class MdiArea : public ViewDokuments
+Q_DECLARE_INTERFACE(ViewDokuments,"ViewDokumentsInterface")
+
+
+#include <QMdiArea>
+
+class MdiArea : public QMdiArea, public ViewDokuments
 {
     Q_OBJECT
+    Q_INTERFACES(ViewDokuments)
 
 public:
     explicit MdiArea(QWidget *parent = nullptr);
 
 private:
     void test() override;
-
-private:
-    class QMdiArea* mdiArea;
 
 };
 

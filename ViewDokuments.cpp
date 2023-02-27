@@ -1,38 +1,31 @@
 #include "ViewDokuments.h"
 
 
-ViewDokuments::ViewDokuments(QWidget *parent)
-    : QWidget{parent}
-{
-
-}
-
-
-
-#include <QMdiArea>
 #include <QGridLayout>
 #include <QLabel>
 
-MdiArea::MdiArea(QWidget *parent): ViewDokuments{parent}
+
+MdiArea::MdiArea(QWidget *parent): QMdiArea{parent}
 {
-    mdiArea = new QMdiArea(this);
-    mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    mdiArea->setDocumentMode(true);
+    setTabsMovable(true);
+
+    tileSubWindows();
+
 }
-
 
 
 void MdiArea::test()
 {
-    QWidget *widget = new QWidget(mdiArea);
+    QWidget *widget = new QWidget(this);
     QGridLayout *gridLayout = new QGridLayout(widget);
     widget->setLayout(gridLayout);
     QLabel *label = new QLabel("Hello, I am sub window!!!", widget);
     gridLayout->addWidget(label);
 
-    mdiArea->addSubWindow(widget);
+    addSubWindow(widget);
     widget->setWindowTitle("Sub Window");
     widget->show();
 }
