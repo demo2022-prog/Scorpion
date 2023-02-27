@@ -49,6 +49,9 @@ set(PROJECT_SOURCES
         AboutWidget.cpp
         AboutWidget.ui
 
+        Document.h
+        Document.cpp
+
 )
 
 configure_file(images/logo.png images/logo.png COPYONLY)
