@@ -13,9 +13,12 @@ public:
 public:
     void rename(const QString& newName);
     void ChangePath(const QString& newPath);
+
     QString getText();
     QTextEdit* getTextEdit();
 
+    const QString& getName();
+    const QString& getPath();
 
 private:
     QString name;

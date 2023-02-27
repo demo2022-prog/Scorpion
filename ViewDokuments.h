@@ -3,10 +3,18 @@
 
 #include <QWidget>
 
+class Document;
+
 class ViewDokuments
 {
 public:
-    virtual void test() = 0;
+
+    virtual ~ViewDokuments();
+
+    virtual void addDocument(Document* document);
+
+protected:
+    QList<Document*> documents;
 
 };
 
@@ -18,13 +26,13 @@ Q_DECLARE_INTERFACE(ViewDokuments,"ViewDokumentsInterface")
 class MdiArea : public QMdiArea, public ViewDokuments
 {
     Q_OBJECT
-    Q_INTERFACES(ViewDokuments)
+    Q_INTERFACES(ViewDokuments)   
 
 public:
     explicit MdiArea(QWidget *parent = nullptr);
 
-private:
-    void test() override;
+private slots:
+    virtual void addDocument(Document *document) override;
 
 };
 

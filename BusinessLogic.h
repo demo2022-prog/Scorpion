@@ -11,7 +11,7 @@ public:
     ~BusinessLogic();
 
 signals:
-    void newDocument(const class Document* document);
+    void newDocument(class Document* document);
 
 public slots:
     void showAbout();

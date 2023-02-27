@@ -25,3 +25,13 @@ QTextEdit *Document::getTextEdit()
 {
     return textEdit;
 }
+
+const QString &Document::getName()
+{
+    return name;
+}
+
+const QString &Document::getPath()
+{
+    return path;
+}
