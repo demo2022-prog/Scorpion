@@ -15,19 +15,19 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     auto fileMenu = new QMenu(tr("File"), menuBar);
 
     auto action = addAction(fileMenu, tr("&New File\tCtrl+N"), "Ctrl+N");
-    action->setIcon(QIcon("qrc:/images/Icons/new.png"));
+    action->setIcon(QIcon(":/images/Icons/new.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onNewFile()));
 
     action = addAction(fileMenu, tr("&Open File\tCtrl+O"), "Ctrl+O");
-    action->setIcon(QIcon("qrc://images/Icons/open.png"));
+    action->setIcon(QIcon(":/images/Icons/open.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onOpenFile()));
 
     action = addAction(fileMenu, tr("&Save File\tCtrl+S"), "Ctrl+S");
-    action->setIcon(QIcon("://images/Icons/save.png"));
+    action->setIcon(QIcon(":/images/Icons/save.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSaveFile()));
 
     action = addAction(fileMenu, tr("&Save FileAs"), "");
-    action->setIcon(QIcon("qrc:/images/Icons/SaveAs.png"));
+    action->setIcon(QIcon(":/images/Icons/SaveAs.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSaveFileAs()));
 
     action = addAction(fileMenu, tr("&Open_in_storage\tAlt+O"), "Alt+O");
@@ -47,11 +47,11 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     auto toolsMenu = new QMenu(tr("Tools"), menuBar);
 
     action = addAction(toolsMenu, tr("&Parametrs"));
-    action->setIcon(QIcon("qrc:/images/Icons/settings.png"));
+    action->setIcon(QIcon(":/images/Icons/settings.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onParametrs()));
 
     action = addAction(toolsMenu, tr("&Printer\tCtrl+P"), "Ctrl+P");
-    action->setIcon(QIcon("qrc:/images/Icons/printer.png"));
+    action->setIcon(QIcon(":/images/Icons/printer.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
 
     menuBar->addMenu(toolsMenu);
@@ -59,7 +59,7 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     auto helpMenu = new QMenu(tr("Help"), menuBar);
 
     action = addAction(helpMenu, tr("&About"));
-    //action->setIcon(QIcon("qrc:/images/Icons/new.png"));
+    action->setIcon(QIcon(":/images/Icons/about.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onAbout()));
 
     menuBar->addMenu(helpMenu);
