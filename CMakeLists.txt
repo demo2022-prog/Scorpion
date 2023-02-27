@@ -34,7 +34,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         
-        icons.qrc
+        #icons.qrc
 
         MainMenu.h
         MainMenu.cpp
@@ -50,6 +50,8 @@ set(PROJECT_SOURCES
         AboutWidget.ui
 
 )
+
+configure_file(images/logo.png images/logo.png COPYONLY)
 
 list (APPEND RESOURCES icons.qrc)
 qt5_add_resources (RCC_SOURCES ${RESOURCES})
@@ -68,7 +70,8 @@ else()
         )
     else()
         add_executable(Scorpion
-            ${PROJECT_SOURCES}            
+            ${PROJECT_SOURCES}
+            ${RCC_SOURCES}
         )
     endif()
 endif()

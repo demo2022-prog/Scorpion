@@ -15,7 +15,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //ui->setupUi(this);
+
+    ui->setupUi(this);
+    
+    MainWindow::setWindowTitle(captionWindow);
+    MainWindow::setWindowIcon(QIcon(iconWindow));
+    MainWindow::setWindowState(Qt::WindowMaximized);
+
 
     // Инициализация компонентов
     businessLogic = new BusinessLogic(this);

@@ -18,7 +18,7 @@ AboutWidget::AboutWidget(QWidget *parent) :
     ui->LicenceTextBrowser->setText(loadFromFile(":/About/License.txt"));
 
     ui->teamLabel->setText(tr("Team"));
-    ui->teamTextBrowser->setText(loadFromFile("qrc:/About/Team.txt"));
+    ui->teamTextBrowser->setText(loadFromFile(":/About/Team.txt"));
 }
 
 AboutWidget::~AboutWidget()
