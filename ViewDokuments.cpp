@@ -4,6 +4,9 @@
 #include <QLabel>
 
 #include "Document.h"
+#include "qdebug.h"
+
+#include <QMdiSubWindow>
 
 ViewDokuments::~ViewDokuments()
 {
@@ -66,4 +69,41 @@ void MdiArea::addDocument( Document *document)
 
     ViewDokuments::addDocument(document);
 }
+
+void MdiArea::saveFile()
+{
+    Document *document = findDocument();
+    if(document){
+        emit saveFile(document);
+    }
+}
+
+void MdiArea::saveFileAs()
+{
+    Document *document = findDocument();
+    if(document){
+        emit saveFileAs(document);
+    }
+}
+
+Document *MdiArea::findDocument()
+{
+    Document *document;
+
+    QMdiSubWindow* subWindow = this->activeSubWindow();
+
+    if(subWindow){
+        for(auto chaild : subWindow->widget()->children()){
+
+            Document *document = qobject_cast<Document *>(chaild);
+
+            if(document){
+                return document;
+            }
+        }
+    }
+
+    return nullptr;
+}
+
 

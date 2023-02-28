@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class Document;
+
 class BusinessLogic : public QWidget
 {
     Q_OBJECT
@@ -11,17 +13,23 @@ public:
     ~BusinessLogic();
 
 signals:
-    void newDocument(class Document* document);
+    void newDocument(Document* document);
 
 public slots:
     void showAbout();
 
     void createNewDocument();
 
+
+    void saveFile(Document* document);
+
+    void saveFileAs(Document* document);
+
     void openFile();
 
 private:
     const QString getNameFromPath(const QString& path);
+
 
 private:
     class AboutWidget* aboutWgt;
