@@ -20,9 +20,16 @@ public slots:
 
     void createNewDocument();
 
+
     void saveFile(Document* document);
 
     void saveFileAs(Document* document);
+
+    void openFile();
+
+private:
+    const QString getNameFromPath(const QString& path);
+
 
 private:
     class AboutWidget* aboutWgt;

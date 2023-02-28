@@ -21,7 +21,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),businessLogic, SLOT(showAbout()));
+
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
+    connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
+
     connect(businessLogic, SIGNAL(newDocument(Document*)), dynamic_cast<QWidget*>(viewDockuments), SLOT(addDocument(Document*)));
 
     connect(mainMenu,SIGNAL(saveFile()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFile()));
