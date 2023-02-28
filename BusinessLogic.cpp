@@ -2,6 +2,8 @@
 
 #include "AboutWidget.h"
 
+#include "Document.h"
+
 
 BusinessLogic::BusinessLogic(QWidget *parent)
     : QWidget{parent}
@@ -17,4 +19,12 @@ BusinessLogic::~BusinessLogic()
 void BusinessLogic::showAbout()
 {
     aboutWgt->show();
+}
+
+void BusinessLogic::createNewDocument()
+{
+    auto newDoc = new Document;
+
+    emit newDocument(newDoc);
+
 }

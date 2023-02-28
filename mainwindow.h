@@ -4,9 +4,6 @@
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
-namespace Ui {
-class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
@@ -21,12 +18,8 @@ private:
 private slots:
 
 private:
-    Ui::MainWindow *ui;
-
     class BusinessLogic* businessLogic;
-
     class MainMenu* mainMenu;
-
     class ViewDokuments* viewDockuments;
 
     const QString captionWindow = ":: Scorpion v.1.0 ::";
