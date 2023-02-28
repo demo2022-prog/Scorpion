@@ -66,7 +66,7 @@ void BusinessLogic::saveFileAs(Document *document)
         return;
     }
 
-    document->ChangePath(fromFileDialog);
+    document->changePath(fromFileDialog);
     saveFile(document);
 }
 
