@@ -11,7 +11,7 @@ void Document::rename(const QString &newName)
     this->name = newName;
 }
 
-void Document::ChangePath(const QString &newPath)
+void Document::changePath(const QString &newPath)
 {
     this->path = newPath;
 }

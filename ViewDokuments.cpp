@@ -37,8 +37,15 @@ void MdiArea::addDocument( Document *document)
     QGridLayout *gridLayout = new QGridLayout(wgt);
     wgt->setLayout(gridLayout);
 
-    QLabel *label = new QLabel("Hello, I am sub window!!!", wgt);
-    gridLayout->addWidget(label);
+
+    if(document->getPath().isEmpty()){
+        QLabel *label = new QLabel("PATH: no path", wgt);
+        gridLayout->addWidget(label);
+    }
+    else{
+        QLabel *label = new QLabel("PATH:" + document->getPath(), wgt);
+        gridLayout->addWidget(label);
+    }
 
     document->setParent(wgt);
     gridLayout->addWidget(document->getTextEdit());
