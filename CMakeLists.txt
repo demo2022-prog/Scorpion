@@ -29,24 +29,49 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
+        
         mainwindow.cpp
         mainwindow.h
-        mainwindow.ui
+
+        MainMenu.h
+        MainMenu.cpp
+
+        ViewDokuments.h
+        ViewDokuments.cpp
+
+        BusinessLogic.h
+        BusinessLogic.cpp
+
+        AboutWidget.h
+        AboutWidget.cpp
+        AboutWidget.ui
+
+        Document.h
+        Document.cpp
+
 )
+
+configure_file(images/logo.png images/logo.png COPYONLY)
+
+list (APPEND RESOURCES icons.qrc)
+qt5_add_resources (RCC_SOURCES ${RESOURCES})
+
+add_library(res ${RCC_SOURCES} ${SOURCES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Scorpion
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${PROJECT_SOURCES}        
     )
 else()
     if(ANDROID)
         add_library(Scorpion SHARED
-            ${PROJECT_SOURCES}
+            ${PROJECT_SOURCES}            
         )
     else()
         add_executable(Scorpion
             ${PROJECT_SOURCES}
+            ${RCC_SOURCES}
         )
     endif()
 endif()
