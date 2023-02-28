@@ -24,7 +24,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(businessLogic, SIGNAL(newDocument(Document*)), dynamic_cast<QWidget*>(viewDockuments), SLOT(addDocument(Document*)));
 
-
+    connect(mainMenu,SIGNAL(saveFile()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFile()));
+    connect(mainMenu,SIGNAL(saveFileAs()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFileAs()));
+    connect(dynamic_cast<QWidget*>(viewDockuments), SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
+    connect(dynamic_cast<QWidget*>(viewDockuments), SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
 }
 
 MainWindow::~MainWindow()

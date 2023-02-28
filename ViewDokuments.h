@@ -13,6 +13,14 @@ public:
 
     virtual void addDocument(Document* document);
 
+    virtual void saveFile() = 0;
+
+    virtual void saveFileAs() = 0;
+
+    virtual void saveFile(Document* document) = 0;
+
+    virtual void saveFileAs(Document* document) = 0;
+
 protected:
     QList<Document*> documents;
 
@@ -31,8 +39,20 @@ class MdiArea : public QMdiArea, public ViewDokuments
 public:
     explicit MdiArea(QWidget *parent = nullptr);
 
+signals:
+    virtual void saveFile(Document* document) override;
+
+    virtual void saveFileAs(Document* document) override;
+
 private slots:
     virtual void addDocument(Document *document) override;
+
+    virtual void saveFile() override;
+
+    virtual void saveFileAs() override;
+
+private:
+    Document* findDocument();
 
 };
 
