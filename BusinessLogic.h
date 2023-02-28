@@ -18,6 +18,11 @@ public slots:
 
     void createNewDocument();
 
+    void openFile();
+
+private:
+    const QString getNameFromPath(const QString& path);
+
 private:
     class AboutWidget* aboutWgt;
 
