@@ -25,7 +25,13 @@ signals:
     void printer();
 
     // Formatting
-
+    void copyFont();
+    void setCopyFont();
+    void selectFont();
+    void selectDedicatedFont();
+    void alignmentLeft();
+    void alignmentCenter();
+    void alignmentRight();
 
     // Help
     void about();
@@ -45,7 +51,13 @@ private slots:
     void onPrinter();
 
     //Formatting
-
+    void onCopyFont();
+    void onSetCopyFont();
+    void onSelectFont();
+    void onSelectDedicatedFont();
+    void onAlignmentLeft();
+    void onAlignmentCenter();
+    void onAlignmentRight();
 
     // Help
     void onAbout();

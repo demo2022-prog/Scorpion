@@ -85,6 +85,30 @@ void ViewDokuments::onSaveFileAs()
     }
 }
 
+void ViewDokuments::onAlignmentLeft()
+{
+    Document *document = findDocument();
+    if(document){
+        emit alignmentLeft(document);
+    }
+}
+
+void ViewDokuments::onAlignmentCenter()
+{
+    Document *document = findDocument();
+    if(document){
+        emit alignmentCenter(document);
+    }
+}
+
+void ViewDokuments::onAlignmentRight()
+{
+    Document *document = findDocument();
+    if(document){
+        emit alignmentRight(document);
+    }
+}
+
 Document *ViewDokuments::findDocument()
 {
     Document *document;
