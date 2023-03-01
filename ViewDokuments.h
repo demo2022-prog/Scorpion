@@ -1,58 +1,38 @@
 #ifndef VIEWDOKUMENTS_H
 #define VIEWDOKUMENTS_H
 
-#include <QWidget>
+#include <QMdiArea>
 
 class Document;
 
-class ViewDokuments
-{
-public:
-
-    virtual ~ViewDokuments();
-
-    virtual void addDocument(Document* document);
-
-    virtual void saveFile() = 0;
-
-    virtual void saveFileAs() = 0;
-
-    virtual void saveFile(Document* document) = 0;
-
-    virtual void saveFileAs(Document* document) = 0;
-
-protected:
-    QList<Document*> documents;
-
-};
-
-Q_DECLARE_INTERFACE(ViewDokuments,"ViewDokumentsInterface")
-
-
-#include <QMdiArea>
-
-class MdiArea : public QMdiArea, public ViewDokuments
+class ViewDokuments : public QMdiArea
 {
     Q_OBJECT
-    Q_INTERFACES(ViewDokuments)   
-
 public:
-    explicit MdiArea(QWidget *parent = nullptr);
+    explicit ViewDokuments(QWidget *parent = nullptr);
+    ~ViewDokuments();
 
 signals:
-    virtual void saveFile(Document* document) override;
+     void saveFile(Document* document);
 
-    virtual void saveFileAs(Document* document) override;
+     void saveFileAs(Document* document);
 
-private slots:
-    virtual void addDocument(Document *document) override;
+public slots:
+    void addDocument(Document *document);
 
-    virtual void saveFile() override;
+    void onSaveFile();
 
-    virtual void saveFileAs() override;
+    void onSaveFileAs();
 
 private:
     Document* findDocument();
+
+    void changeNameAndPathInWgt(Document* document);
+
+private:
+    QList<Document*> documents;
+
+    QMdiSubWindow* senderSubWindow;
 
 };
 

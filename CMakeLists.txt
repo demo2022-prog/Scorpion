@@ -27,28 +27,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
-set(PROJECT_SOURCES
-        main.cpp
-        
-        mainwindow.cpp
-        mainwindow.h
-
-        MainMenu.h
-        MainMenu.cpp
-
-        ViewDokuments.h
-        ViewDokuments.cpp
-
-        BusinessLogic.h
-        BusinessLogic.cpp
-
-        AboutWidget.h
-        AboutWidget.cpp
-        AboutWidget.ui
-
-        Document.h
-        Document.cpp
-
+file(GLOB_RECURSE PROJECT_SOURCES
+    "${PROJECT_SOURCES}*.h"
+    "${PROJECT_SOURCES}*.cpp"
+    "${PROJECT_SOURCES}*.ui"
 )
 
 configure_file(images/logo.png images/logo.png COPYONLY)
