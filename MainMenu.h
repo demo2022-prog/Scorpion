@@ -24,11 +24,11 @@ signals:
     void parametrs();
     void printer();
 
+    // Formatting
+
+
     // Help
     void about();
-
-private:
-    class QAction* addAction(class QMenu* menu, const QString& name, const QString& shortcut = "");
 
 private slots:
     // File
@@ -44,8 +44,14 @@ private slots:
     void onParametrs();
     void onPrinter();
 
+    //Formatting
+
+
     // Help
     void onAbout();
+
+private:
+    class QAction* addAction(class QMenu* menu, const QString& name, const QString& shortcut = "");
 
 private:
     class QMenuBar* menuBar;
