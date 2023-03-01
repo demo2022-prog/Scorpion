@@ -17,12 +17,24 @@ signals:
 
      void saveFileAs(Document* document);
 
+     void alignmentLeft(Document* document);
+
+     void alignmentCenter(Document* document);
+
+     void alignmentRight(Document* document);
+
 public slots:
     void addDocument(Document *document);
 
     void onSaveFile();
 
     void onSaveFileAs();
+
+    void onAlignmentLeft();
+
+    void onAlignmentCenter();
+
+    void onAlignmentRight();
 
 private:
     Document* findDocument();

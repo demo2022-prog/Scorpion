@@ -20,12 +20,17 @@ public slots:
 
     void createNewDocument();
 
+    void openFile();
 
     void saveFile(Document* document);
 
     void saveFileAs(Document* document);
 
-    void openFile();
+    void alignmentLeft(Document* document);
+
+    void alignmentCenter(Document* document);
+
+    void alignmentRight(Document* document);
 
 private:
     const QString getNameFromPath(const QString& path);

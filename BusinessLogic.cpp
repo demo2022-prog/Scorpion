@@ -5,14 +5,11 @@
 #include "Document.h"
 #include "qdebug.h"
 
-#include <QFileDialog>
-#include <QTextStream>
 
 #include <QFile>
-
 #include <QTextStream>
-
 #include <QFileDialog>
+
 
 BusinessLogic::BusinessLogic(QWidget *parent)
     : QWidget{parent}
@@ -72,6 +69,21 @@ void BusinessLogic::saveFileAs(Document *document)
     document->rename(getNameFromPath(fromFileDialog));
 
     saveFile(document);
+}
+
+void BusinessLogic::alignmentLeft(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignLeft);
+}
+
+void BusinessLogic::alignmentCenter(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignCenter);
+}
+
+void BusinessLogic::alignmentRight(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignRight);
 }
 
 void BusinessLogic::openFile()

@@ -33,6 +33,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(saveFileAs()), viewDockuments, SLOT(onSaveFileAs()));
     connect(viewDockuments, SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
     connect(viewDockuments, SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
+
+    connect(mainMenu,SIGNAL(alignmentLeft()), viewDockuments, SLOT(onAlignmentLeft()));
+    connect(mainMenu,SIGNAL(alignmentCenter()), viewDockuments, SLOT(onAlignmentCenter()));
+    connect(mainMenu,SIGNAL(alignmentRight()), viewDockuments, SLOT(onAlignmentRight()));
+    connect(viewDockuments, SIGNAL(alignmentLeft(Document*)),businessLogic, SLOT(alignmentLeft(Document*)));
+    connect(viewDockuments, SIGNAL(alignmentCenter(Document*)),businessLogic, SLOT(alignmentCenter(Document*)));
+    connect(viewDockuments, SIGNAL(alignmentRight(Document*)),businessLogic, SLOT(alignmentRight(Document*)));
 }
 
 MainWindow::~MainWindow()

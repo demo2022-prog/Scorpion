@@ -66,33 +66,33 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
 
     action = addAction(formattingMenu, tr("&Copy Font"), "");
     action->setIcon(QIcon(":/images/Icons/typographyCopyUp.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onCopyFont()));
 
     action = addAction(formattingMenu, tr("&Set Copy Font"), "");
     action->setIcon(QIcon(":/images/Icons/typographyCopy.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onSetCopyFont()));
 
     action = addAction(formattingMenu, tr("&Select Font"), "");
     action->setIcon(QIcon(":/images/Icons/typography.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onSelectFont()));
 
-    action = addAction(formattingMenu, tr("&Select Dedicated Font "), "");
+    action = addAction(formattingMenu, tr("&Select Dedicated Font"), "");
     action->setIcon(QIcon(":/images/Icons/typographyMouse.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onSelectDedicatedFont()));
 
     formattingMenu->addSeparator();
 
-    action = addAction(formattingMenu, tr("&AlignmentLeft"), "");
+    action = addAction(formattingMenu, tr("&Alignment Left"), "");
     action->setIcon(QIcon(":/images/Icons/textLeft.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onAlignmentLeft()));
 
-    action = addAction(formattingMenu, tr("&AlignmentCenter"), "");
+    action = addAction(formattingMenu, tr("&Alignment Center"), "");
     action->setIcon(QIcon(":/images/Icons/textCenter.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onAlignmentCenter()));
 
-    action = addAction(formattingMenu, tr("&AlignmentLeft"), "");
+    action = addAction(formattingMenu, tr("&Alignment Right"), "");
     action->setIcon(QIcon(":/images/Icons/textRight.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onAlignmentRight()));
 
     menuBar->addMenu(formattingMenu);
 
@@ -161,6 +161,42 @@ void MainMenu::onParametrs()
 void MainMenu::onPrinter()
 {
     emit printer();
+}
+
+//Formatting
+void MainMenu::onCopyFont()
+{
+    emit copyFont();
+}
+
+void MainMenu::onSetCopyFont()
+{
+    emit setCopyFont();
+}
+
+void MainMenu::onSelectFont()
+{
+    emit selectFont();
+}
+
+void MainMenu::onSelectDedicatedFont()
+{
+    emit selectDedicatedFont();
+}
+
+void MainMenu::onAlignmentLeft()
+{
+    emit alignmentLeft();
+}
+
+void MainMenu::onAlignmentCenter()
+{
+    emit alignmentCenter();
+}
+
+void MainMenu::onAlignmentRight()
+{
+    emit alignmentRight();
 }
 
 // Help
