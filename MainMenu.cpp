@@ -28,7 +28,7 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     action->setIcon(QIcon(":/images/Icons/save.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSaveFile()));
 
-    action = addAction(fileMenu, tr("&Save FileAs"), "");
+    action = addAction(fileMenu, tr("&Save File As"), "");
     action->setIcon(QIcon(":/images/Icons/SaveAs.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSaveFileAs()));
 
