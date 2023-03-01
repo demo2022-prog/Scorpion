@@ -23,6 +23,12 @@ signals:
 
      void alignmentRight(Document* document);
 
+     void copy(Document* document);
+
+     void paste(Document* document);
+
+     void cut(Document* document);
+
 public slots:
     void addDocument(Document *document);
 
@@ -35,6 +41,12 @@ public slots:
     void onAlignmentCenter();
 
     void onAlignmentRight();
+
+    void onCopy();
+
+    void onPaste();
+
+    void onCut();
 
 private:
     Document* findDocument();

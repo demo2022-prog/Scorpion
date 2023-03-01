@@ -86,6 +86,22 @@ void BusinessLogic::alignmentRight(Document *document)
     document->getTextEdit()->setAlignment(Qt::AlignRight);
 }
 
+void BusinessLogic::copy(Document *document)
+{
+    document->getTextEdit()->copy();
+}
+
+void BusinessLogic::paste(Document *document)
+{
+    document->getTextEdit()->paste();
+}
+
+void BusinessLogic::cut(Document *document)
+{
+    document->getTextEdit()->cut();
+}
+
+
 void BusinessLogic::openFile()
 {
 

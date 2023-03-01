@@ -32,6 +32,9 @@ signals:
     void alignmentLeft();
     void alignmentCenter();
     void alignmentRight();
+    void copy();
+    void paste();
+    void cut();
 
     // Help
     void about();
@@ -58,6 +61,10 @@ private slots:
     void onAlignmentLeft();
     void onAlignmentCenter();
     void onAlignmentRight();
+    void onCopy();
+    void onPaste();
+    void onCut();
+
 
     // Help
     void onAbout();

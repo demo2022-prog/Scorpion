@@ -109,6 +109,30 @@ void ViewDokuments::onAlignmentRight()
     }
 }
 
+void ViewDokuments::onCopy()
+{
+    Document *document = findDocument();
+    if(document){
+        emit copy(document);
+    }
+}
+
+void ViewDokuments::onPaste()
+{
+    Document *document = findDocument();
+    if(document){
+        emit paste(document);
+    }
+}
+
+void ViewDokuments::onCut()
+{
+    Document *document = findDocument();
+    if(document){
+        emit cut(document);
+    }
+}
+
 Document *ViewDokuments::findDocument()
 {
     Document *document;
