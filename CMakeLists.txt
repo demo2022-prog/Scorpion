@@ -56,10 +56,10 @@ set(PROJECT_SOURCES
 
 configure_file(images/logo.png images/logo.png COPYONLY)
 
-list (APPEND RESOURCES icons.qrc)
-qt5_add_resources (RCC_SOURCES ${RESOURCES})
+#list (APPEND RESOURCES icons.qrc)
+#qt5_add_resources (RCC_SOURCES ${RESOURCES})
 
-add_library(res ${RCC_SOURCES} ${SOURCES})
+#add_library(res ${RCC_SOURCES} ${SOURCES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Scorpion
