@@ -15,10 +15,6 @@ signals:
     void newFile();
     void openFile();
     void saveFile();
-//    void saveFileAs();
-    void openInStorage();
-    void saveInStorage();
-
     // Tools
     void printer();
 
@@ -30,9 +26,6 @@ private slots:
     void onNewFile();
     void onOpenFile();
     void onSaveFile();
-//    void onSaveFileAs();
-    void onOpenInStorage();
-    void onSaveInStorage();
 
     // Tools
     void onPrinter();

@@ -42,6 +42,8 @@ set(PROJECT_SOURCES
         BusinessLogic.h
         BusinessLogic.cpp
 
+        icons.qrc
+
         AboutWidget.h
         AboutWidget.cpp
         AboutWidget.ui

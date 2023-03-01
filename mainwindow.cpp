@@ -8,6 +8,8 @@
 #include <MainMenu.h>
 #include <ViewDokuments.h>
 
+#include "toolbar.h"
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -15,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     businessLogic = new BusinessLogic(this);
     mainMenu = new MainMenu(this);
     viewDockuments = new MdiArea(this);
+
+    toolBar = new ToolBar(this);
 
     // Размещение графических компонентов
     setupGui();
@@ -31,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(saveFileAs()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFileAs()));
     connect(dynamic_cast<QWidget*>(viewDockuments), SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
     connect(dynamic_cast<QWidget*>(viewDockuments), SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
+
+    connect(toolBar,&ToolBar::newFile,businessLogic, &BusinessLogic::createNewDocument);
+    connect(toolBar,&ToolBar::openFile,businessLogic, &BusinessLogic::openFile);
+    connect(toolBar,SIGNAL(saveFile()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFile()));
 }
 
 MainWindow::~MainWindow()
@@ -51,6 +59,10 @@ void MainWindow::setupGui()
 
     mainMenu->setMinimumHeight(25);
     mainLayout->addWidget(mainMenu);
+
+    toolBar->setMinimumHeight(40);
+
+    mainLayout->addWidget(toolBar);
 
     auto viewWgt = dynamic_cast<QWidget*>(viewDockuments);
     viewWgt->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
