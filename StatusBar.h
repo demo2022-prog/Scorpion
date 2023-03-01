@@ -1,0 +1,19 @@
+#ifndef STATUSBAR_H
+#define STATUSBAR_H
+
+#include <QStatusBar>
+
+class StatusBar : public QStatusBar
+{
+    Q_OBJECT
+public:
+    explicit StatusBar(QWidget *parent = nullptr);
+
+signals:
+
+private slots:
+     void showMessage();
+
+};
+
+#endif // STATUSBAR_H

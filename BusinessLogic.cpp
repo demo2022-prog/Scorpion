@@ -51,6 +51,8 @@ void BusinessLogic::saveFile(Document *document)
         QTextStream textSteam(&file);
         textSteam << document->getText();
     }
+
+    emit newDocument(document);
 }
 
 void BusinessLogic::saveFileAs(Document *document)
@@ -67,6 +69,8 @@ void BusinessLogic::saveFileAs(Document *document)
     }
 
     document->changePath(fromFileDialog);
+    document->rename(getNameFromPath(fromFileDialog));
+
     saveFile(document);
 }
 

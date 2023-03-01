@@ -1,12 +1,20 @@
 #include "ViewDokuments.h"
 
+#include "Document.h"
+
 #include <QGridLayout>
 #include <QLabel>
-
-#include "Document.h"
-#include "qdebug.h"
-
 #include <QMdiSubWindow>
+
+ViewDokuments::ViewDokuments(QWidget *parent)
+{
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+    setTabsMovable(true);
+
+    tileSubWindows();
+}
 
 ViewDokuments::~ViewDokuments()
 {
@@ -16,25 +24,16 @@ ViewDokuments::~ViewDokuments()
     }
 }
 
-void ViewDokuments::addDocument(Document *document)
+void ViewDokuments::addDocument( Document *document)
 {
-    documents.push_back(document);
-}
+    for(auto oldDoc: documents){
+        if(oldDoc == document)
+        {
+            changeNameAndPathInWgt(document);
+            return;
+        }
+    }
 
-
-MdiArea::MdiArea(QWidget *parent): QMdiArea(parent)
-{
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-
-    setTabsMovable(true);
-
-    tileSubWindows();
-
-}
-
-void MdiArea::addDocument( Document *document)
-{
     QWidget* wgt = new QWidget(this);
 
     QGridLayout *gridLayout = new QGridLayout(wgt);
@@ -67,10 +66,10 @@ void MdiArea::addDocument( Document *document)
     wgt->show();
 
 
-    ViewDokuments::addDocument(document);
+    documents.push_back(document);
 }
 
-void MdiArea::saveFile()
+void ViewDokuments::onSaveFile()
 {
     Document *document = findDocument();
     if(document){
@@ -78,7 +77,7 @@ void MdiArea::saveFile()
     }
 }
 
-void MdiArea::saveFileAs()
+void ViewDokuments::onSaveFileAs()
 {
     Document *document = findDocument();
     if(document){
@@ -86,24 +85,43 @@ void MdiArea::saveFileAs()
     }
 }
 
-Document *MdiArea::findDocument()
+Document *ViewDokuments::findDocument()
 {
     Document *document;
 
     QMdiSubWindow* subWindow = this->activeSubWindow();
 
     if(subWindow){
+
         for(auto chaild : subWindow->widget()->children()){
 
             Document *document = qobject_cast<Document *>(chaild);
 
             if(document){
+                senderSubWindow = subWindow;
                 return document;
             }
         }
     }
 
     return nullptr;
+}
+
+void ViewDokuments::changeNameAndPathInWgt(Document * document)
+{
+    if(senderSubWindow){
+        senderSubWindow->widget()->setWindowTitle(document->getName());
+
+        for(auto chaild : senderSubWindow->widget()->children()){
+            QLabel *label = qobject_cast<QLabel *>(chaild);
+
+            if(label){
+                label->setText("PATH:" + document->getPath());
+            }
+        }
+
+        senderSubWindow = nullptr;
+    }
 }
 
 

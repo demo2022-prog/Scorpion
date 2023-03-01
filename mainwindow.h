@@ -21,6 +21,7 @@ private:
     class BusinessLogic* businessLogic;
     class MainMenu* mainMenu;
     class ViewDokuments* viewDockuments;
+    class StatusBar* statusBar;
 
     const QString captionWindow = ":: Scorpion v.1.0 ::";
     const QString iconWindow = "./images/logo.png";
