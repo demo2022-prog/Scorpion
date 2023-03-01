@@ -32,6 +32,13 @@ public slots:
 
     void alignmentRight(Document* document);
 
+    void copy(Document* document);
+
+    void paste(Document* document);
+
+    void cut(Document* document);
+
+
 private:
     const QString getNameFromPath(const QString& path);
 

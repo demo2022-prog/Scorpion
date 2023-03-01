@@ -64,6 +64,18 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
 
     auto formattingMenu = new QMenu(tr("Formatting"), menuBar);
 
+    action = addAction(formattingMenu, tr("&Copy"), "");
+    action->setIcon(QIcon(":/images/Icons/copy.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onCopy()));
+
+    action = addAction(formattingMenu, tr("&Paste"), "");
+    action->setIcon(QIcon(":/images/Icons/paste.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onPaste()));
+
+    action = addAction(formattingMenu, tr("&Cut"), "");
+    action->setIcon(QIcon(":/images/Icons/cut.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onCut()));
+
     action = addAction(formattingMenu, tr("&Copy Font"), "");
     action->setIcon(QIcon(":/images/Icons/typographyCopyUp.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onCopyFont()));
@@ -197,6 +209,21 @@ void MainMenu::onAlignmentCenter()
 void MainMenu::onAlignmentRight()
 {
     emit alignmentRight();
+}
+
+void MainMenu::onCopy()
+{
+    emit copy();
+}
+
+void MainMenu::onPaste()
+{
+    emit paste();
+}
+
+void MainMenu::onCut()
+{
+    emit cut();
 }
 
 // Help

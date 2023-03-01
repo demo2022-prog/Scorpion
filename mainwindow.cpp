@@ -40,6 +40,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(viewDockuments, SIGNAL(alignmentLeft(Document*)),businessLogic, SLOT(alignmentLeft(Document*)));
     connect(viewDockuments, SIGNAL(alignmentCenter(Document*)),businessLogic, SLOT(alignmentCenter(Document*)));
     connect(viewDockuments, SIGNAL(alignmentRight(Document*)),businessLogic, SLOT(alignmentRight(Document*)));
+
+    connect(mainMenu,SIGNAL(copy()), viewDockuments, SLOT(onCopy()));
+    connect(mainMenu,SIGNAL(paste()), viewDockuments, SLOT(onPaste()));
+    connect(mainMenu,SIGNAL(cut()), viewDockuments, SLOT(onCut()));
+    connect(viewDockuments, SIGNAL(copy(Document*)),businessLogic, SLOT(copy(Document*)));
+    connect(viewDockuments, SIGNAL(paste(Document*)),businessLogic, SLOT(paste(Document*)));
+    connect(viewDockuments, SIGNAL(cut(Document*)),businessLogic, SLOT(cut(Document*)));
+
 }
 
 MainWindow::~MainWindow()
