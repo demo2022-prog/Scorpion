@@ -49,6 +49,9 @@ set(PROJECT_SOURCES
         Document.h
         Document.cpp
 
+        toolbar.h
+        toolbar.cpp
+
 )
 
 configure_file(images/logo.png images/logo.png COPYONLY)
