@@ -61,7 +61,7 @@ void MainWindow::setupGui()
     mainLayout->addWidget(mainMenu);
 
     toolBar->setMinimumHeight(40);
-
+    //toolBar->setStyleSheet(QString("QWidget {margin: 0px;}"));
     mainLayout->addWidget(toolBar);
 
     auto viewWgt = dynamic_cast<QWidget*>(viewDockuments);

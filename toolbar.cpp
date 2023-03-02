@@ -7,14 +7,14 @@
 ToolBar::ToolBar(QWidget *parent): QWidget(parent)
 {
 
-    toolBar = new QToolBar(this);
+    Bar = new QToolBar(this);
 
-    toolBar->addAction(QIcon(":/images/Icons/new.png"),"New File", this, SLOT(onNewFile()));
-    toolBar->addAction(QIcon(":/images/Icons/open.png"),"Open File", this, SLOT(onOpenFile()));
-    toolBar->addAction(QIcon(":/images/Icons/save.png"),"Save File", this, SLOT(onSaveFile()));
-    toolBar->addSeparator();
-    toolBar->addAction(QIcon(":/images/Icons/printer.png"),"Printer", this, SLOT(onPrinter()));
-    toolBar->addSeparator();
+    Bar->addAction(QIcon(":/images/Icons/new.png"),"New File", this, SLOT(onNewFile()));
+    Bar->addAction(QIcon(":/images/Icons/open.png"),"Open File", this, SLOT(onOpenFile()));
+    Bar->addAction(QIcon(":/images/Icons/save.png"),"Save File", this, SLOT(onSaveFile()));
+    Bar->addSeparator();
+    Bar->addAction(QIcon(":/images/Icons/printer.png"),"Printer", this, SLOT(onPrinter()));
+    Bar->addSeparator();
 }
 
 void ToolBar::onNewFile()

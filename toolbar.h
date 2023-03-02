@@ -31,7 +31,7 @@ private slots:
     void onPrinter();
 
 private:
-    class QToolBar* toolBar;
+    class QToolBar* Bar;
 
 };
 
