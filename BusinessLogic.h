@@ -15,6 +15,8 @@ public:
 signals:
     void newDocument(Document* document);
 
+    void textData(const QString& worlds, const QString& strings);
+
 public slots:
     void showAbout();
 
@@ -38,6 +40,10 @@ public slots:
 
     void cut(Document* document);
 
+    void onTextData(Document* document);
+
+private slots:
+    void textChanged();
 
 private:
     const QString getNameFromPath(const QString& path);
@@ -45,6 +51,8 @@ private:
 
 private:
     class AboutWidget* aboutWgt;
+
+    class QTextEdit* senderTextEdit;
 
 };
 

@@ -48,6 +48,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(viewDockuments, SIGNAL(paste(Document*)),businessLogic, SLOT(paste(Document*)));
     connect(viewDockuments, SIGNAL(cut(Document*)),businessLogic, SLOT(cut(Document*)));
 
+    connect(viewDockuments, SIGNAL(textData(Document*)),businessLogic, SLOT(onTextData(Document*)));
+    connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -73,7 +77,8 @@ void MainWindow::setupGui()
     viewWgt->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     mainLayout->addWidget(viewWgt);
 
-    statusBar->setMinimumHeight(30);
+    statusBar->setMinimumHeight(35);
+    statusBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     mainLayout->addWidget(statusBar);
 
     mainWgt->setLayout(mainLayout);

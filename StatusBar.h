@@ -1,9 +1,9 @@
 #ifndef STATUSBAR_H
 #define STATUSBAR_H
 
-#include <QStatusBar>
+#include <QWidget>
 
-class StatusBar : public QStatusBar
+class StatusBar : public QWidget
 {
     Q_OBJECT
 public:
@@ -12,7 +12,11 @@ public:
 signals:
 
 private slots:
-     void showMessage();
+     void showTextData(const QString& words = "0",const QString& strings = "0");
+
+private:
+     class QStatusBar* statusBarWords;
+     class QStatusBar* statusBarStrungs;
 
 };
 
