@@ -29,6 +29,8 @@ signals:
 
      void cut(Document* document);
 
+     void textData(Document* document);
+
 public slots:
     void addDocument(Document *document);
 
@@ -47,6 +49,9 @@ public slots:
     void onPaste();
 
     void onCut();
+
+private slots:
+    void onActivatedWindow(QMdiSubWindow* window);
 
 private:
     Document* findDocument();

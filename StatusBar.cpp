@@ -1,25 +1,53 @@
 #include "StatusBar.h"
 
+#include <QStatusBar>
+
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QPushButton>
 
 StatusBar::StatusBar(QWidget *parent)
-    : QStatusBar{parent}
+    : QWidget{parent}
 {
-    auto label = new QLabel(this);
-    label->setText(tr("THIS is STATUS BAAAAR!!!"));
-    addPermanentWidget(label);
+    auto rootLayout = new QHBoxLayout(this);
+    this->setLayout(rootLayout);
 
-    auto testButton = new QPushButton("Click me", this);
-    addWidget(testButton);
-    connect(testButton, SIGNAL(clicked()),this, SLOT(showMessage()));
+
+    auto textDataBeginLabel = new QLabel(this);
+    textDataBeginLabel->setText(tr("Text Data ("));
+    rootLayout->addWidget(textDataBeginLabel);
+
+    auto wordsLabel = new QLabel(this);
+    wordsLabel->setText(tr("Words: "));
+    rootLayout->addWidget(wordsLabel);
+
+    statusBarWords = new QStatusBar(this);
+    statusBarWords->setMaximumWidth(50);
+    rootLayout->addWidget(statusBarWords);
+
+    auto stringsLabel = new QLabel(this);
+    stringsLabel->setText(tr("Strings: "));
+    rootLayout->addWidget(stringsLabel);
+
+    statusBarStrungs = new QStatusBar(this);
+    statusBarStrungs->setMaximumWidth(50);
+    rootLayout->addWidget(statusBarStrungs);
+
+    auto textDataEndLabel = new QLabel(this);
+    textDataEndLabel->setText(tr(")"));
+    rootLayout->addWidget(textDataEndLabel);
+
+    auto spacer = new QSpacerItem(300, 0, QSizePolicy::Expanding);
+    rootLayout->addSpacerItem(spacer);
+
+    showTextData();
 
 }
 
-void StatusBar::showMessage()
+void StatusBar::showTextData(const QString& words,const QString& strings)
 {
-    QStatusBar::showMessage("WTF WTF WTF WTF WTF", 500);
+    statusBarWords->showMessage(words);
+    statusBarStrungs->showMessage(strings);
 }
 
 

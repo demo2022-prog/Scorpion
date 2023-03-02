@@ -101,6 +101,26 @@ void BusinessLogic::cut(Document *document)
     document->getTextEdit()->cut();
 }
 
+void BusinessLogic::onTextData(Document *document)
+{
+    if(document){
+        senderTextEdit = document->getTextEdit();
+        connect(senderTextEdit, SIGNAL(textChanged()), this, SLOT(textChanged()));
+        textChanged();
+    }
+}
+
+void BusinessLogic::textChanged()
+{
+    QString text = senderTextEdit->toPlainText();
+
+    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), Qt::SkipEmptyParts).count());
+
+    QString strings = QString::number(text.split("\n").count());
+
+    emit textData(words,strings);
+}
+
 
 void BusinessLogic::openFile()
 {

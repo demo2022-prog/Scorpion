@@ -14,6 +14,8 @@ ViewDokuments::ViewDokuments(QWidget *parent)
     setTabsMovable(true);
 
     tileSubWindows();
+
+    connect(this, SIGNAL(subWindowActivated(QMdiSubWindow*)),this, SLOT(onActivatedWindow(QMdiSubWindow*)));
 }
 
 ViewDokuments::~ViewDokuments()
@@ -131,6 +133,22 @@ void ViewDokuments::onCut()
     if(document){
         emit cut(document);
     }
+}
+
+void ViewDokuments::onActivatedWindow(QMdiSubWindow *window)
+{
+    if(window){
+
+        for(auto chaild : window->widget()->children()){
+
+            Document *document = qobject_cast<Document *>(chaild);
+
+            if(document){
+                emit textData(document);
+            }
+        }
+    }
+
 }
 
 Document *ViewDokuments::findDocument()
