@@ -23,6 +23,7 @@ private:
     class ViewDokuments* viewDockuments;
     class ToolBar* toolBar;    
     class StatusBar* statusBar;
+    class AboutWidget* aboutWgt;
 
 
     const QString captionWindow = ":: Scorpion v.1.0 ::";
