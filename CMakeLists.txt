@@ -23,19 +23,20 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 
 #=================== INCLUSION OF Project Files ====================#
-set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
-set(GUI_DIR "${CMAKE_SOURCE_DIR}/src/gui")
-set(LOGIC_DIR "${CMAKE_SOURCE_DIR}/src/logic")
+set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")
+set(GUI_DIR "${CMAKE_SOURCE_DIR}/project/gui")
+set(LOGIC_DIR "${CMAKE_SOURCE_DIR}/project/logic")
+set(FORMS_DIR "${CMAKE_SOURCE_DIR}/project/forms")
 
 include_directories(${SRC_DIR})
 include_directories(${GUI_DIR})
 include_directories(${LOGIC_DIR})
 
 file(GLOB_RECURSE SOURCES
-    "${SRC_DIR}/*.h"
-    "${SRC_DIR}/*.cpp"
-    "${SRC_DIR}/*.ui"
-    "${SRC_DIR}/*.qrc"
+    "${PROJECT_DIR}/*.h"
+    "${PROJECT_DIR}/*.cpp"
+    "${PROJECT_DIR}/*.ui"
+    "${PROJECT_DIR}/*.qrc"
 )
 
 #=================== SETUP EXECTUABLE ====================#
@@ -55,9 +56,10 @@ elseif(UNIX)
 endif()
 
 # Add the target includes for MY_PROJECT
-target_include_directories(Scorpion PRIVATE ${SRC_DIR})
+target_include_directories(Scorpion PRIVATE ${PROJECT_DIR})
 target_include_directories(Scorpion PRIVATE ${GUI_DIR})
 target_include_directories(Scorpion PRIVATE ${LOGIC_DIR})
+target_include_directories(Scorpion PRIVATE ${FORMS_DIR})
 
 #===================== LINKING LIBRARIES =======================#
 target_link_libraries(Scorpion Qt5::Widgets)
