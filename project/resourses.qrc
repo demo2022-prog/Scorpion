@@ -1,16 +1,20 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/new.png</file>
+        <file>about/License.txt</file>
+        <file>about/Team.txt</file>
         <file>images/Icons/about.png</file>
         <file>images/Icons/arrow-down.png</file>
         <file>images/Icons/CloseFile.png</file>
+        <file>images/Icons/copy.png</file>
         <file>images/Icons/crown.png</file>
+        <file>images/Icons/cut.png</file>
         <file>images/Icons/exit.png</file>
         <file>images/Icons/MdiView.png</file>
         <file>images/Icons/new.png</file>
         <file>images/Icons/notesHTML.png</file>
         <file>images/Icons/open.png</file>
         <file>images/Icons/openOnlyRead.png</file>
+        <file>images/Icons/paste.png</file>
         <file>images/Icons/printer.png</file>
         <file>images/Icons/save.png</file>
         <file>images/Icons/SaveAs.png</file>
@@ -25,7 +29,7 @@
         <file>images/Icons/typographyCopyDown.png</file>
         <file>images/Icons/typographyCopyUp.png</file>
         <file>images/Icons/typographyMouse.png</file>
-        <file>About/License.txt</file>
-        <file>About/Team.txt</file>
+        <file>images/logo.png</file>
+        <file>images/new.png</file>
     </qresource>
 </RCC>

@@ -1,34 +1,26 @@
 #include "BusinessLogic.h"
 
-#include "AboutWidget.h"
 
 #include "Document.h"
 #include "qdebug.h"
 
-#include <QFileDialog>
-#include <QTextStream>
 
 #include <QFile>
-
 #include <QTextStream>
-
 #include <QFileDialog>
+
 
 BusinessLogic::BusinessLogic(QWidget *parent)
     : QWidget{parent}
 {
-    aboutWgt = new AboutWidget();
+
 }
 
 BusinessLogic::~BusinessLogic()
 {
-    delete aboutWgt;
+
 }
 
-void BusinessLogic::showAbout()
-{
-    aboutWgt->show();
-}
 
 void BusinessLogic::createNewDocument()
 {
@@ -51,6 +43,8 @@ void BusinessLogic::saveFile(Document *document)
         QTextStream textSteam(&file);
         textSteam << document->getText();
     }
+
+    emit newDocument(document);
 }
 
 void BusinessLogic::saveFileAs(Document *document)
@@ -67,8 +61,61 @@ void BusinessLogic::saveFileAs(Document *document)
     }
 
     document->changePath(fromFileDialog);
+    document->rename(getNameFromPath(fromFileDialog));
+
     saveFile(document);
 }
+
+void BusinessLogic::alignmentLeft(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignLeft);
+}
+
+void BusinessLogic::alignmentCenter(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignCenter);
+}
+
+void BusinessLogic::alignmentRight(Document *document)
+{
+    document->getTextEdit()->setAlignment(Qt::AlignRight);
+}
+
+void BusinessLogic::copy(Document *document)
+{
+    document->getTextEdit()->copy();
+}
+
+void BusinessLogic::paste(Document *document)
+{
+    document->getTextEdit()->paste();
+}
+
+void BusinessLogic::cut(Document *document)
+{
+    document->getTextEdit()->cut();
+}
+
+void BusinessLogic::onTextData(Document *document)
+{
+    if(document){
+        senderTextEdit = document->getTextEdit();
+        connect(senderTextEdit, SIGNAL(textChanged()), this, SLOT(textChanged()));
+        textChanged();
+    }
+}
+
+void BusinessLogic::textChanged()
+{
+    QString text = senderTextEdit->toPlainText();
+
+    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), Qt::SkipEmptyParts).count());
+
+    QString strings = QString::number(text.split("\n").count());
+
+    emit textData(words,strings);
+}
+
 
 void BusinessLogic::openFile()
 {

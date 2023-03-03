@@ -24,11 +24,20 @@ signals:
     void parametrs();
     void printer();
 
+    // Formatting
+    void copyFont();
+    void setCopyFont();
+    void selectFont();
+    void selectDedicatedFont();
+    void alignmentLeft();
+    void alignmentCenter();
+    void alignmentRight();
+    void copy();
+    void paste();
+    void cut();
+
     // Help
     void about();
-
-private:
-    class QAction* addAction(class QMenu* menu, const QString& name, const QString& shortcut = "");
 
 private slots:
     // File
@@ -44,8 +53,24 @@ private slots:
     void onParametrs();
     void onPrinter();
 
+    //Formatting
+    void onCopyFont();
+    void onSetCopyFont();
+    void onSelectFont();
+    void onSelectDedicatedFont();
+    void onAlignmentLeft();
+    void onAlignmentCenter();
+    void onAlignmentRight();
+    void onCopy();
+    void onPaste();
+    void onCut();
+
+
     // Help
     void onAbout();
+
+private:
+    class QAction* addAction(class QMenu* menu, const QString& name, const QString& shortcut = "");
 
 private:
     class QMenuBar* menuBar;
