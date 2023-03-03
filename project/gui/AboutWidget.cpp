@@ -15,10 +15,10 @@ AboutWidget::AboutWidget(QWidget *parent) :
     setWindowTitle(tr("About the Scorpion"));
 
     ui->mainLabel->setText(tr("License GPL 3"));
-    ui->LicenceTextBrowser->setText(loadFromFile(":/About/License.txt"));
+    ui->LicenceTextBrowser->setText(loadFromFile(":/about/License.txt"));
 
     ui->teamLabel->setText(tr("Team"));
-    ui->teamTextBrowser->setText(loadFromFile(":/About/Team.txt"));
+    ui->teamTextBrowser->setText(loadFromFile(":/about/Team.txt"));
 }
 
 AboutWidget::~AboutWidget()

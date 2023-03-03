@@ -8,8 +8,8 @@
 #include <MainMenu.h>
 #include <ViewDokuments.h>
 #include <StatusBar.h>
-
-#include "toolbar.h"
+#include <AboutWidget.h>
+#include <toolbar.h>
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
@@ -19,14 +19,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     mainMenu = new MainMenu(this);
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
-
     toolBar = new ToolBar(this);
+    aboutWgt = new AboutWidget();
 
     // Размещение графических компонентов
     setupGui();
 
     // Связи компонентов
-    connect(mainMenu,SIGNAL(about()),businessLogic, SLOT(showAbout()));
+    connect(mainMenu,SIGNAL(about()),aboutWgt, SLOT(show()));
 
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 MainWindow::~MainWindow()
 {
-
+    delete aboutWgt;
 }
 
 

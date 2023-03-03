@@ -18,7 +18,6 @@ signals:
     void textData(const QString& worlds, const QString& strings);
 
 public slots:
-    void showAbout();
 
     void createNewDocument();
 
@@ -50,7 +49,7 @@ private:
 
 
 private:
-    class AboutWidget* aboutWgt;
+
 
     class QTextEdit* senderTextEdit;
 
