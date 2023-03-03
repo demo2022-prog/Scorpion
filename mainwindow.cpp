@@ -56,14 +56,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
 
 
-    connect(mainMenu,SIGNAL(saveFile()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFile()));
-    connect(mainMenu,SIGNAL(saveFileAs()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFileAs()));
+    connect(mainMenu,SIGNAL(saveFile()),viewDockuments, SLOT(onSaveFile()));
+    connect(mainMenu,SIGNAL(saveFileAs()),viewDockuments, SLOT(onSaveFileAs()));
     connect(viewDockuments, SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
     connect(viewDockuments, SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
 
     connect(toolBar,&ToolBar::newFile,businessLogic, &BusinessLogic::createNewDocument);
     connect(toolBar,&ToolBar::openFile,businessLogic, &BusinessLogic::openFile);
-    connect(toolBar,SIGNAL(saveFile()),viewDockuments, SLOT(saveFile()));
+    connect(toolBar,SIGNAL(saveFile()),viewDockuments, SLOT(onSaveFile()));
 
 }
 
