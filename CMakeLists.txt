@@ -18,8 +18,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 
 #=================== INCLUSION OF Project Files ====================#
@@ -27,10 +27,6 @@ set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")
 set(GUI_DIR "${CMAKE_SOURCE_DIR}/project/gui")
 set(LOGIC_DIR "${CMAKE_SOURCE_DIR}/project/logic")
 set(FORMS_DIR "${CMAKE_SOURCE_DIR}/project/forms")
-
-include_directories(${SRC_DIR})
-include_directories(${GUI_DIR})
-include_directories(${LOGIC_DIR})
 
 file(GLOB_RECURSE SOURCES
     "${PROJECT_DIR}/*.h"
