@@ -27,18 +27,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
+
 file(GLOB_RECURSE PROJECT_SOURCES
     "${PROJECT_SOURCES}*.h"
     "${PROJECT_SOURCES}*.cpp"
     "${PROJECT_SOURCES}*.ui"
+
 )
 
 configure_file(images/logo.png images/logo.png COPYONLY)
 
-list (APPEND RESOURCES icons.qrc)
-qt5_add_resources (RCC_SOURCES ${RESOURCES})
+#list (APPEND RESOURCES icons.qrc)
+#qt5_add_resources (RCC_SOURCES ${RESOURCES})
 
-add_library(res ${RCC_SOURCES} ${SOURCES})
+#add_library(res ${RCC_SOURCES} ${SOURCES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Scorpion

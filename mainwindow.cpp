@@ -9,6 +9,8 @@
 #include <ViewDokuments.h>
 #include <StatusBar.h>
 
+#include "toolbar.h"
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -17,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     mainMenu = new MainMenu(this);
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
+
+    toolBar = new ToolBar(this);
 
     // Размещение графических компонентов
     setupGui();
@@ -52,6 +56,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
 
 
+    connect(mainMenu,SIGNAL(saveFile()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFile()));
+    connect(mainMenu,SIGNAL(saveFileAs()),dynamic_cast<QWidget*>(viewDockuments), SLOT(saveFileAs()));
+    connect(viewDockuments, SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
+    connect(viewDockuments, SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
+
+    connect(toolBar,&ToolBar::newFile,businessLogic, &BusinessLogic::createNewDocument);
+    connect(toolBar,&ToolBar::openFile,businessLogic, &BusinessLogic::openFile);
+    connect(toolBar,SIGNAL(saveFile()),viewDockuments, SLOT(saveFile()));
+
 }
 
 MainWindow::~MainWindow()
@@ -72,6 +85,10 @@ void MainWindow::setupGui()
 
     mainMenu->setMinimumHeight(30);
     mainLayout->addWidget(mainMenu);
+
+    toolBar->setMinimumHeight(40);
+    //toolBar->setStyleSheet(QString("QWidget {margin: 0px;}"));
+    mainLayout->addWidget(toolBar);
 
     auto viewWgt = dynamic_cast<QWidget*>(viewDockuments);
     viewWgt->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
