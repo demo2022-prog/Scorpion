@@ -31,39 +31,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
 
+    connect(mainMenu,SIGNAL(saveFile()), businessLogic, SLOT(saveFile()));
+    connect(mainMenu,SIGNAL(saveFileAs()), businessLogic, SLOT(saveFileAs()));
+
+    connect(mainMenu,SIGNAL(alignmentLeft()), businessLogic, SLOT(alignmentLeft()));
+    connect(mainMenu,SIGNAL(alignmentCenter()), businessLogic, SLOT(alignmentCenter()));
+    connect(mainMenu,SIGNAL(alignmentRight()), businessLogic, SLOT(alignmentRight()));
+
+    connect(mainMenu,SIGNAL(copy()), businessLogic, SLOT(copy()));
+    connect(mainMenu,SIGNAL(paste()), businessLogic, SLOT(paste()));
+    connect(mainMenu,SIGNAL(cut()), businessLogic, SLOT(cut()));
+
+    connect(toolBar,&ToolBar::newFile, businessLogic, &BusinessLogic::createNewDocument);
+    connect(toolBar,&ToolBar::openFile, businessLogic, &BusinessLogic::openFile);
+    connect(toolBar,SIGNAL(saveFile()), businessLogic, SLOT(saveFile()));
+
+
+    connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
+
     connect(businessLogic, SIGNAL(newDocument(Document*)), viewDockuments, SLOT(addDocument(Document*)));
 
-    connect(mainMenu,SIGNAL(saveFile()), viewDockuments, SLOT(onSaveFile()));
-    connect(mainMenu,SIGNAL(saveFileAs()), viewDockuments, SLOT(onSaveFileAs()));
-    connect(viewDockuments, SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
-    connect(viewDockuments, SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
-
-    connect(mainMenu,SIGNAL(alignmentLeft()), viewDockuments, SLOT(onAlignmentLeft()));
-    connect(mainMenu,SIGNAL(alignmentCenter()), viewDockuments, SLOT(onAlignmentCenter()));
-    connect(mainMenu,SIGNAL(alignmentRight()), viewDockuments, SLOT(onAlignmentRight()));
-    connect(viewDockuments, SIGNAL(alignmentLeft(Document*)),businessLogic, SLOT(alignmentLeft(Document*)));
-    connect(viewDockuments, SIGNAL(alignmentCenter(Document*)),businessLogic, SLOT(alignmentCenter(Document*)));
-    connect(viewDockuments, SIGNAL(alignmentRight(Document*)),businessLogic, SLOT(alignmentRight(Document*)));
-
-    connect(mainMenu,SIGNAL(copy()), viewDockuments, SLOT(onCopy()));
-    connect(mainMenu,SIGNAL(paste()), viewDockuments, SLOT(onPaste()));
-    connect(mainMenu,SIGNAL(cut()), viewDockuments, SLOT(onCut()));
-    connect(viewDockuments, SIGNAL(copy(Document*)),businessLogic, SLOT(copy(Document*)));
-    connect(viewDockuments, SIGNAL(paste(Document*)),businessLogic, SLOT(paste(Document*)));
-    connect(viewDockuments, SIGNAL(cut(Document*)),businessLogic, SLOT(cut(Document*)));
-
-    connect(viewDockuments, SIGNAL(textData(Document*)),businessLogic, SLOT(onTextData(Document*)));
     connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
-
-
-    connect(mainMenu,SIGNAL(saveFile()),viewDockuments, SLOT(onSaveFile()));
-    connect(mainMenu,SIGNAL(saveFileAs()),viewDockuments, SLOT(onSaveFileAs()));
-    connect(viewDockuments, SIGNAL(saveFile(Document*)),businessLogic, SLOT(saveFile(Document*)));
-    connect(viewDockuments, SIGNAL(saveFileAs(Document*)),businessLogic, SLOT(saveFileAs(Document*)));
-
-    connect(toolBar,&ToolBar::newFile,businessLogic, &BusinessLogic::createNewDocument);
-    connect(toolBar,&ToolBar::openFile,businessLogic, &BusinessLogic::openFile);
-    connect(toolBar,SIGNAL(saveFile()),viewDockuments, SLOT(onSaveFile()));
 
 }
 

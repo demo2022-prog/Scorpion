@@ -30,24 +30,24 @@ void BusinessLogic::createNewDocument()
 
 }
 
-void BusinessLogic::saveFile(Document *document)
+void BusinessLogic::saveFile()
 {
-    if(document->getPath().isEmpty()){
-        saveFileAs(document);
+    if(senderDocument->getPath().isEmpty()){
+        saveFileAs();
         return;
     }
 
-    QFile file(document->getPath());
+    QFile file(senderDocument->getPath());
     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QTextStream textSteam(&file);
-        textSteam << document->getText();
+        textSteam << senderDocument->getText();
     }
 
-    emit newDocument(document);
+    emit newDocument(senderDocument);
 }
 
-void BusinessLogic::saveFileAs(Document *document)
+void BusinessLogic::saveFileAs()
 {
     QString firstPath = "/";
     QString filter = tr(""); //tr("Image Files (*.png *.jpg *.bmp)")
@@ -60,60 +60,64 @@ void BusinessLogic::saveFileAs(Document *document)
         return;
     }
 
-    document->changePath(fromFileDialog);
-    document->rename(getNameFromPath(fromFileDialog));
+    senderDocument->changePath(fromFileDialog);
+    senderDocument->rename(getNameFromPath(fromFileDialog));
 
-    saveFile(document);
+    saveFile();
 }
 
-void BusinessLogic::alignmentLeft(Document *document)
+void BusinessLogic::alignmentLeft()
 {
-    document->getTextEdit()->setAlignment(Qt::AlignLeft);
+    senderDocument->getTextEdit()->setAlignment(Qt::AlignLeft);
 }
 
-void BusinessLogic::alignmentCenter(Document *document)
+void BusinessLogic::alignmentCenter()
 {
-    document->getTextEdit()->setAlignment(Qt::AlignCenter);
+    senderDocument->getTextEdit()->setAlignment(Qt::AlignCenter);
 }
 
-void BusinessLogic::alignmentRight(Document *document)
+void BusinessLogic::alignmentRight()
 {
-    document->getTextEdit()->setAlignment(Qt::AlignRight);
+    senderDocument->getTextEdit()->setAlignment(Qt::AlignRight);
 }
 
-void BusinessLogic::copy(Document *document)
+void BusinessLogic::copy()
 {
-    document->getTextEdit()->copy();
+    senderDocument->getTextEdit()->copy();
 }
 
-void BusinessLogic::paste(Document *document)
+void BusinessLogic::paste()
 {
-    document->getTextEdit()->paste();
+    senderDocument->getTextEdit()->paste();
 }
 
-void BusinessLogic::cut(Document *document)
+void BusinessLogic::cut()
 {
-    document->getTextEdit()->cut();
+    senderDocument->getTextEdit()->cut();
 }
 
-void BusinessLogic::onTextData(Document *document)
+void BusinessLogic::activeDocument(Document *document)
 {
+    qDebug() << "DEBUG:" << "NEW ACTIVE DOCUMENT";
+
     if(document){
-        senderTextEdit = document->getTextEdit();
-        connect(senderTextEdit, SIGNAL(textChanged()), this, SLOT(textChanged()));
+        senderDocument = document;
+
+        connect(senderDocument->getTextEdit(), SIGNAL(textChanged()), this, SLOT(textChanged()));
+
         textChanged();
     }
 }
 
 void BusinessLogic::textChanged()
 {
-    QString text = senderTextEdit->toPlainText();
+    QString text = senderDocument->getTextEdit()->toPlainText();
 
     QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), Qt::SkipEmptyParts).count());
 
     QString strings = QString::number(text.split("\n").count());
 
-    emit textData(words,strings);
+    emit textData(words, strings);
 }
 
 

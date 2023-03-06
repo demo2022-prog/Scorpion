@@ -1,6 +1,7 @@
 #include "ViewDokuments.h"
 
 #include "Document.h"
+#include "qdebug.h"
 
 #include <QGridLayout>
 #include <QLabel>
@@ -18,11 +19,20 @@ ViewDokuments::ViewDokuments(QWidget *parent)
     connect(this, SIGNAL(subWindowActivated(QMdiSubWindow*)),this, SLOT(onActivatedWindow(QMdiSubWindow*)));
 }
 
-ViewDokuments::~ViewDokuments()
+void ViewDokuments::onActivatedWindow(QMdiSubWindow *window)
 {
-    const auto size = documents.size();
-    for(int i = 0; i < size; i++){
-         documents.pop_back();
+    if(window){
+
+        senderSubWindow = window;
+
+        for(auto chaild : window->widget()->children()){
+
+            Document *document = qobject_cast<Document *>(chaild);
+
+            if(document){
+                emit activeDocument(document);
+            }
+        }
     }
 }
 
@@ -71,112 +81,16 @@ void ViewDokuments::addDocument( Document *document)
     documents.push_back(document);
 }
 
-void ViewDokuments::onSaveFile()
-{
-    Document *document = findDocument();
-    if(document){
-        emit saveFile(document);
-    }
-}
-
-void ViewDokuments::onSaveFileAs()
-{
-    Document *document = findDocument();
-    if(document){
-        emit saveFileAs(document);
-    }
-}
-
-void ViewDokuments::onAlignmentLeft()
-{
-    Document *document = findDocument();
-    if(document){
-        emit alignmentLeft(document);
-    }
-}
-
-void ViewDokuments::onAlignmentCenter()
-{
-    Document *document = findDocument();
-    if(document){
-        emit alignmentCenter(document);
-    }
-}
-
-void ViewDokuments::onAlignmentRight()
-{
-    Document *document = findDocument();
-    if(document){
-        emit alignmentRight(document);
-    }
-}
-
-void ViewDokuments::onCopy()
-{
-    Document *document = findDocument();
-    if(document){
-        emit copy(document);
-    }
-}
-
-void ViewDokuments::onPaste()
-{
-    Document *document = findDocument();
-    if(document){
-        emit paste(document);
-    }
-}
-
-void ViewDokuments::onCut()
-{
-    Document *document = findDocument();
-    if(document){
-        emit cut(document);
-    }
-}
-
-void ViewDokuments::onActivatedWindow(QMdiSubWindow *window)
-{
-    if(window){
-
-        for(auto chaild : window->widget()->children()){
-
-            Document *document = qobject_cast<Document *>(chaild);
-
-            if(document){
-                emit textData(document);
-            }
-        }
-    }
-
-}
-
-Document *ViewDokuments::findDocument()
-{
-    Document *document;
-
-    QMdiSubWindow* subWindow = this->activeSubWindow();
-
-    if(subWindow){
-
-        for(auto chaild : subWindow->widget()->children()){
-
-            Document *document = qobject_cast<Document *>(chaild);
-
-            if(document){
-                senderSubWindow = subWindow;
-                return document;
-            }
-        }
-    }
-
-    return nullptr;
-}
-
 void ViewDokuments::changeNameAndPathInWgt(Document * document)
 {
+    if(!document){
+        qDebug() << "DEBUG:" << "EMPTY DOCUMENT";
+    }
+
     if(senderSubWindow){
-        senderSubWindow->widget()->setWindowTitle(document->getName());
+        QString newName = document->getName();
+        qDebug() << "DEBUG:" << "NEW NAME" << newName;
+        senderSubWindow->widget()->setWindowTitle(newName);
 
         for(auto chaild : senderSubWindow->widget()->children()){
             QLabel *label = qobject_cast<QLabel *>(chaild);
@@ -187,6 +101,14 @@ void ViewDokuments::changeNameAndPathInWgt(Document * document)
         }
 
         senderSubWindow = nullptr;
+    }
+}
+
+ViewDokuments::~ViewDokuments()
+{
+    const auto size = documents.size();
+    for(int i = 0; i < size; i++){
+         documents.pop_back();
     }
 }
 
