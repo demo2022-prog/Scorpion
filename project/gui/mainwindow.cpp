@@ -46,6 +46,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(toolBar,&ToolBar::openFile, businessLogic, &BusinessLogic::openFile);
     connect(toolBar,SIGNAL(saveFile()), businessLogic, SLOT(saveFile()));
 
+    connect(toolBar,&ToolBar::copy, businessLogic, &BusinessLogic::copy);
+    connect(toolBar,&ToolBar::paste, businessLogic, &BusinessLogic::paste);
+    connect(toolBar,&ToolBar::cut, businessLogic, &BusinessLogic::cut);
+
+    connect(toolBar,&ToolBar::alignmentLeft, businessLogic, &BusinessLogic::alignmentLeft);
+    connect(toolBar,&ToolBar::alignmentCenter, businessLogic, &BusinessLogic::alignmentCenter);
+    connect(toolBar,&ToolBar::alignmentRight, businessLogic, &BusinessLogic::alignmentRight);
 
     connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
 
