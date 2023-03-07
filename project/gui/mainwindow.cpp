@@ -9,6 +9,7 @@
 #include <ViewDokuments.h>
 #include <StatusBar.h>
 #include <AboutWidget.h>
+#include <ParametersWidget.h>
 #include <toolbar.h>
 
 
@@ -21,12 +22,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     statusBar = new StatusBar(this);
     toolBar = new ToolBar(this);
     aboutWgt = new AboutWidget();
+    parametersWgt =new ParametersWidget();
 
     // Размещение графических компонентов
     setupGui();
 
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),aboutWgt, SLOT(show()));
+    connect(mainMenu,SIGNAL(parameters()),parametersWgt, SLOT(show()));
 
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));

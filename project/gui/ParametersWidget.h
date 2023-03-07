@@ -16,6 +16,13 @@ public:
     ~ParametersWidget();
 
 private:
+    std::vector<QString> styles;
+
+private:
+    void loadStyle();
+    void setStyleSheet(int index);
+
+private:
     Ui::ParametersWidget *ui;
 };
 

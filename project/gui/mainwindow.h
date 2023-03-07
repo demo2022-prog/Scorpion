@@ -24,6 +24,7 @@ private:
     class ToolBar* toolBar;    
     class StatusBar* statusBar;
     class AboutWidget* aboutWgt;
+    class ParametersWidget* parametersWgt;
 
 
     const QString captionWindow = ":: Scorpion v.1.0 ::";
