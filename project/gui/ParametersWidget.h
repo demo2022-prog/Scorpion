@@ -2,6 +2,7 @@
 #define PARAMETERSWIDGET_H
 
 #include <QWidget>
+#include <QSettings>
 
 namespace Ui {
 class ParametersWidget;
@@ -15,8 +16,12 @@ public:
     explicit ParametersWidget(QWidget *parent = nullptr);
     ~ParametersWidget();
 
+private slots:
+    void on_selectStyleBox_activated(int index);
+
 private:
     std::vector<QString> styles;
+    QSettings settings;
 
 private:
     void loadStyle();

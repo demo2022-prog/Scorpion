@@ -4,6 +4,9 @@
 #include <QDirIterator>
 #include <QFile>
 
+#include <QStyleFactory>
+#include <QDebug>
+
 ParametersWidget::ParametersWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ParametersWidget)
@@ -11,6 +14,7 @@ ParametersWidget::ParametersWidget(QWidget *parent) :
     ui->setupUi(this);
     setWindowIcon(QIcon(":/images/Icons/settings.png"));
     setWindowTitle(tr("Parameters"));
+    //QSettings* settings = new QSettings(this);
 
     ui->labelStyleBox->setText(tr("Style:"));
 
@@ -19,43 +23,51 @@ ParametersWidget::ParametersWidget(QWidget *parent) :
 
 ParametersWidget::~ParametersWidget()
 {
+    //delete settings;
     delete ui;
 }
 
 void ParametersWidget::loadStyle()
 {
-//    settings->beginGroup("Style");
-//    auto index = settings->value("Style",0).toInt;
-//    settings->endGroup();
-
-    QDirIterator ItR(":/images/Styles/", QDir::Files);
+    settings.beginGroup("Style");
+    auto index = settings.value("Style",0).toInt();
+    settings.endGroup();
+    QString path = ":/images/Styles/";   // path resource style
+    int lenghtExt = 4;                   //  lenght ".qss"
+    QDirIterator ItR(path, QDir::Files);
+    styles.push_back("");
+    ui->selectStyleBox->addItem("default");
     while (ItR.hasNext())
     {
-        QFile file(ItR.next());
+        QFile file(ItR.next());        
         if (file.open(QFile::ReadOnly))
         {
             QString styleLoad = file.readAll();
             styles.push_back(styleLoad);
 
-            QString name = file.fileName().mid(16,file.fileName().count()-16-4);
+            QString name = file.fileName().mid(path.count(),file.fileName().count()-path.count()-lenghtExt);
             ui->selectStyleBox->addItem(name);
 
             file.close();
         }
     }
 
-//    ui->selectStyleBox->setCurrentIndex(index);
-//    connect(ui->selectStyleBox, SIGNAL(activated(int)), SLOT(setStyleSheet(int)));
+    ui->selectStyleBox->setCurrentIndex(index);
 }
 
 void ParametersWidget::setStyleSheet(int index)
 {
-    qApp->setStyleSheet(styles[index]);
-
-
-    //    QFile styleSheet(":/images/Styles/Eclippy.qss");
-    //    styleSheet.open(QFile::ReadOnly);
-    //    auto content = styleSheet.readAll();
-    //    qApp->setStyleSheet(content);
-    //    styleSheet.close();
+    if (index == 0)
+    {
+        qApp->setStyleSheet(QStyleFactory::keys()[0]);
+    } else
+    {
+        qApp->setStyleSheet(styles[index]);
+    }
 }
+
+void ParametersWidget::on_selectStyleBox_activated(int index)
+{
+    setStyleSheet(index);
+}
+
