@@ -13,15 +13,19 @@ class ParametersWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ParametersWidget(QWidget *parent = nullptr);
+    explicit ParametersWidget(QSettings *setFile = nullptr, QWidget *parent = nullptr);
     ~ParametersWidget();
 
+    QSettings* setFile;
 private slots:
     void on_selectStyleBox_activated(int index);
 
+    void on_okButton_clicked();
+
+    void on_cancelButton_clicked();
+
 private:
     std::vector<QString> styles;
-    QSettings settings;
 
 private:
     void loadStyle();

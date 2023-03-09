@@ -7,31 +7,33 @@
 #include <QStyleFactory>
 #include <QDebug>
 
-ParametersWidget::ParametersWidget(QWidget *parent) :
-    QWidget(parent),
+ParametersWidget::ParametersWidget(QSettings *set, QWidget *parent) :
+    setFile(set), QWidget(parent),
     ui(new Ui::ParametersWidget)
 {
     ui->setupUi(this);
     setWindowIcon(QIcon(":/images/Icons/settings.png"));
-    setWindowTitle(tr("Parameters"));
-    //QSettings* settings = new QSettings(this);
+    setWindowTitle(tr("Parameters"));   
 
     ui->labelStyleBox->setText(tr("Style:"));
+    ui->okButton->setText(tr("OK"));
+    ui->cancelButton->setText(tr("Cancel"));
+
+//    setFile->beginGroup("Style");
+//    auto index = setFile->value("Style",0).toInt();
+//    setFile->endGroup();
 
     this->loadStyle();
 }
 
 ParametersWidget::~ParametersWidget()
 {
-    //delete settings;
     delete ui;
 }
 
 void ParametersWidget::loadStyle()
 {
-    settings.beginGroup("Style");
-    auto index = settings.value("Style",0).toInt();
-    settings.endGroup();
+    int index = 0;
     QString path = ":/images/Styles/";   // path resource style
     int lenghtExt = 4;                   //  lenght ".qss"
     QDirIterator ItR(path, QDir::Files);
@@ -69,5 +71,17 @@ void ParametersWidget::setStyleSheet(int index)
 void ParametersWidget::on_selectStyleBox_activated(int index)
 {
     setStyleSheet(index);
+}
+
+
+void ParametersWidget::on_okButton_clicked()
+{
+    close();
+}
+
+
+void ParametersWidget::on_cancelButton_clicked()
+{
+    close();
 }
 

@@ -21,8 +21,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
     toolBar = new ToolBar(this);
+    settings = new QSettings("settings.ini", QSettings::IniFormat, this);
     aboutWgt = new AboutWidget();
-    parametersWgt =new ParametersWidget();
+    parametersWgt =new ParametersWidget(settings);
 
     // Размещение графических компонентов
     setupGui();
@@ -67,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 MainWindow::~MainWindow()
 {
+    delete settings;
     delete aboutWgt;
 }
 
@@ -79,13 +81,12 @@ void MainWindow::setupGui()
 
     auto mainWgt = new QWidget(this);
 
-    auto mainLayout = new QVBoxLayout();
+    auto mainLayout = new QVBoxLayout();    
 
     mainMenu->setMinimumHeight(30);
     mainLayout->addWidget(mainMenu);
 
     toolBar->setMinimumHeight(40);
-    //toolBar->setStyleSheet(QString("QWidget {margin: 0px;}"));
     mainLayout->addWidget(toolBar);
 
     auto viewWgt = dynamic_cast<QWidget*>(viewDockuments);
