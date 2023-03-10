@@ -50,7 +50,7 @@ private:
 
 private:
 
-    Document* senderDocument;
+    Document* senderDocument = nullptr;
 
 };
 
