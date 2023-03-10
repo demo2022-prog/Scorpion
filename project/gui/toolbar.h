@@ -15,6 +15,19 @@ signals:
     void newFile();
     void openFile();
     void saveFile();
+
+    // Formating
+    void copyFont();
+    void setCopyFont();
+    void selectFont();
+    void selectDedicatedFont();
+    void alignmentLeft();
+    void alignmentCenter();
+    void alignmentRight();
+    void copy();
+    void paste();
+    void cut();
+
     // Tools
     void printer();
 
@@ -26,6 +39,18 @@ private slots:
     void onNewFile();
     void onOpenFile();
     void onSaveFile();
+
+    //Formatting
+    void onCopyFont();
+    void onSetCopyFont();
+    void onSelectFont();
+    void onSelectDedicatedFont();
+    void onAlignmentLeft();
+    void onAlignmentCenter();
+    void onAlignmentRight();
+    void onCopy();
+    void onPaste();
+    void onCut();
 
     // Tools
     void onPrinter();

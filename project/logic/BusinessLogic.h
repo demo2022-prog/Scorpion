@@ -18,28 +18,28 @@ signals:
     void textData(const QString& worlds, const QString& strings);
 
 public slots:
+    void activeDocument(Document *document);
 
     void createNewDocument();
 
     void openFile();
 
-    void saveFile(Document* document);
+    void saveFile();
 
-    void saveFileAs(Document* document);
+    void saveFileAs();
 
-    void alignmentLeft(Document* document);
+    void alignmentLeft();
 
-    void alignmentCenter(Document* document);
+    void alignmentCenter();
 
-    void alignmentRight(Document* document);
+    void alignmentRight();
 
-    void copy(Document* document);
+    void copy();
 
-    void paste(Document* document);
+    void paste();
 
-    void cut(Document* document);
+    void cut();
 
-    void onTextData(Document* document);
 
 private slots:
     void textChanged();
@@ -50,8 +50,7 @@ private:
 
 private:
 
-
-    class QTextEdit* senderTextEdit;
+    Document* senderDocument = nullptr;
 
 };
 

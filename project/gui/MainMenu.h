@@ -21,7 +21,7 @@ signals:
     void exit();
 
     // Tools
-    void parametrs();
+    void parameters();
     void printer();
 
     // Formatting
@@ -50,7 +50,7 @@ private slots:
     void onExit();
 
     // Tools
-    void onParametrs();
+    void onParameters();
     void onPrinter();
 
     //Formatting

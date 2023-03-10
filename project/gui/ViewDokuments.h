@@ -13,49 +13,15 @@ public:
     ~ViewDokuments();
 
 signals:
-     void saveFile(Document* document);
-
-     void saveFileAs(Document* document);
-
-     void alignmentLeft(Document* document);
-
-     void alignmentCenter(Document* document);
-
-     void alignmentRight(Document* document);
-
-     void copy(Document* document);
-
-     void paste(Document* document);
-
-     void cut(Document* document);
-
-     void textData(Document* document);
+    void activeDocument(Document* document);
 
 public slots:
     void addDocument(Document *document);
-
-    void onSaveFile();
-
-    void onSaveFileAs();
-
-    void onAlignmentLeft();
-
-    void onAlignmentCenter();
-
-    void onAlignmentRight();
-
-    void onCopy();
-
-    void onPaste();
-
-    void onCut();
 
 private slots:
     void onActivatedWindow(QMdiSubWindow* window);
 
 private:
-    Document* findDocument();
-
     void changeNameAndPathInWgt(Document* document);
 
 private:
