@@ -32,6 +32,9 @@ void BusinessLogic::createNewDocument()
 
 void BusinessLogic::saveFile()
 {
+    if(!senderDocument)
+        return;
+
     if(senderDocument->getPath().isEmpty()){
         saveFileAs();
         return;
@@ -68,37 +71,42 @@ void BusinessLogic::saveFileAs()
 
 void BusinessLogic::alignmentLeft()
 {
-    senderDocument->getTextEdit()->setAlignment(Qt::AlignLeft);
+    if(senderDocument)
+        senderDocument->getTextEdit()->setAlignment(Qt::AlignLeft);
 }
 
 void BusinessLogic::alignmentCenter()
 {
-    senderDocument->getTextEdit()->setAlignment(Qt::AlignCenter);
+    if(senderDocument)
+        senderDocument->getTextEdit()->setAlignment(Qt::AlignCenter);
 }
 
 void BusinessLogic::alignmentRight()
 {
-    senderDocument->getTextEdit()->setAlignment(Qt::AlignRight);
+    if(senderDocument)
+        senderDocument->getTextEdit()->setAlignment(Qt::AlignRight);
 }
 
 void BusinessLogic::copy()
 {
-    senderDocument->getTextEdit()->copy();
+    if(senderDocument)
+        senderDocument->getTextEdit()->copy();
 }
 
 void BusinessLogic::paste()
 {
-    senderDocument->getTextEdit()->paste();
+    if(senderDocument)
+        senderDocument->getTextEdit()->paste();
 }
 
 void BusinessLogic::cut()
 {
-    senderDocument->getTextEdit()->cut();
+    if(senderDocument)
+        senderDocument->getTextEdit()->cut();
 }
 
 void BusinessLogic::activeDocument(Document *document)
 {
-    qDebug() << "DEBUG:" << "NEW ACTIVE DOCUMENT";
 
     if(document){
         senderDocument = document;
