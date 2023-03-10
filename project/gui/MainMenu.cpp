@@ -54,7 +54,7 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
 
     action = addAction(toolsMenu, tr("&Parametrs"));
     action->setIcon(QIcon(":/images/Icons/settings.png"));
-    connect(action, SIGNAL(triggered()), this, SLOT(onParametrs()));
+    connect(action, SIGNAL(triggered()), this, SLOT(onParameters()));
 
     action = addAction(toolsMenu, tr("&Printer\tCtrl+P"), "Ctrl+P");
     action->setIcon(QIcon(":/images/Icons/printer.png"));
@@ -165,9 +165,9 @@ void MainMenu::onExit()
 }
 
 // Tools
-void MainMenu::onParametrs()
+void MainMenu::onParameters()
 {
-    emit parametrs();
+    emit parameters();
 }
 
 void MainMenu::onPrinter()

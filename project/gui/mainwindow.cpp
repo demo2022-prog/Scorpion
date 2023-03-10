@@ -9,6 +9,7 @@
 #include <ViewDokuments.h>
 #include <StatusBar.h>
 #include <AboutWidget.h>
+#include <ParametersWidget.h>
 #include <toolbar.h>
 
 
@@ -20,13 +21,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
     toolBar = new ToolBar(this);
+
+    // необходимо разработать отдельный класс Setting со связкой слотами и сигналами
+    settings = new QSettings("settings.ini", QSettings::IniFormat, this);
+
     aboutWgt = new AboutWidget();
+    parametersWgt =new ParametersWidget(settings);
 
     // Размещение графических компонентов
     setupGui();
 
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),aboutWgt, SLOT(show()));
+    connect(mainMenu,SIGNAL(parameters()),parametersWgt, SLOT(show()));
 
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
@@ -64,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 MainWindow::~MainWindow()
 {
+    delete settings;
     delete aboutWgt;
 }
 
@@ -76,13 +84,12 @@ void MainWindow::setupGui()
 
     auto mainWgt = new QWidget(this);
 
-    auto mainLayout = new QVBoxLayout();
+    auto mainLayout = new QVBoxLayout();    
 
     mainMenu->setMinimumHeight(30);
     mainLayout->addWidget(mainMenu);
 
     toolBar->setMinimumHeight(40);
-    //toolBar->setStyleSheet(QString("QWidget {margin: 0px;}"));
     mainLayout->addWidget(toolBar);
 
     auto viewWgt = dynamic_cast<QWidget*>(viewDockuments);

@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-
+#include <QSettings>
 
 class MainWindow : public QMainWindow
 {
@@ -12,6 +12,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    QSettings* settings;
 private:
     void setupGui();
 
@@ -24,6 +26,7 @@ private:
     class ToolBar* toolBar;    
     class StatusBar* statusBar;
     class AboutWidget* aboutWgt;
+    class ParametersWidget* parametersWgt;
 
 
     const QString captionWindow = ":: Scorpion v.1.0 ::";
