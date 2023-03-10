@@ -21,7 +21,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
     toolBar = new ToolBar(this);
+
+    // необходимо разработать отдельный класс Setting со связкой слотами и сигналами
     settings = new QSettings("settings.ini", QSettings::IniFormat, this);
+
     aboutWgt = new AboutWidget();
     parametersWgt =new ParametersWidget(settings);
 

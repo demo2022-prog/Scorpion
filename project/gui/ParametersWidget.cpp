@@ -82,6 +82,8 @@ void ParametersWidget::on_okButton_clicked()
 
 void ParametersWidget::on_cancelButton_clicked()
 {
+    // reset style, temporary solution
+    setStyleSheet(0);
     close();
 }
 
