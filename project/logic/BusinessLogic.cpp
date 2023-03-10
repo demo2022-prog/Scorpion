@@ -32,7 +32,7 @@ void BusinessLogic::createNewDocument()
 
 void BusinessLogic::saveFile()
 {
-    if(!senderDocument)
+    if(senderDocument == nullptr)
         return;
 
     if(senderDocument->getPath().isEmpty()){
@@ -52,6 +52,9 @@ void BusinessLogic::saveFile()
 
 void BusinessLogic::saveFileAs()
 {
+    if(!senderDocument)
+        return;
+
     QString firstPath = "/";
     QString filter = tr(""); //tr("Image Files (*.png *.jpg *.bmp)")
 
