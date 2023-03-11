@@ -44,6 +44,8 @@ public slots:
 
     void selectDedicatedFont();
 
+    void changeFontColor();
+
 
 private slots:
     void textChanged();

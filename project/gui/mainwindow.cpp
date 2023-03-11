@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(mainMenu,SIGNAL(selectFont()), businessLogic, SLOT(selectFont()));
     connect(mainMenu,SIGNAL(selectDedicatedFont()), businessLogic, SLOT(selectDedicatedFont()));
+    connect(mainMenu,SIGNAL(changeFontColor()), businessLogic, SLOT(changeFontColor()));
 
     connect(mainMenu,SIGNAL(copy()), businessLogic, SLOT(copy()));
     connect(mainMenu,SIGNAL(paste()), businessLogic, SLOT(paste()));

@@ -28,6 +28,7 @@ signals:
     void copyFont();
     void setCopyFont();
     void selectFont();
+    void changeFontColor();
     void selectDedicatedFont();
     void alignmentLeft();
     void alignmentCenter();
@@ -58,6 +59,7 @@ private slots:
     void onSetCopyFont();
     void onSelectFont();
     void onSelectDedicatedFont();
+    void onChangeFontColor();
     void onAlignmentLeft();
     void onAlignmentCenter();
     void onAlignmentRight();

@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QColorDialog>
 
 
 BusinessLogic::BusinessLogic(QWidget *parent)
@@ -137,6 +138,17 @@ void BusinessLogic::selectDedicatedFont()
             cfmt.setFont(font);
             senderDocument->getTextEdit()->textCursor().setCharFormat(cfmt);
         }
+    }
+}
+
+void BusinessLogic::changeFontColor()
+{
+    if(senderDocument){
+        QColor colorFont = senderDocument->getTextEdit()->textColor();
+        colorFont = QColorDialog::getColor(colorFont);
+
+        if(colorFont.isValid())
+            senderDocument->getTextEdit()->setTextColor(colorFont);
     }
 }
 
