@@ -21,6 +21,7 @@ set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
+configure_file(project/images/logo.png images/logo.png COPYONLY)
 
 #=================== INCLUSION OF Project Files ====================#
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")

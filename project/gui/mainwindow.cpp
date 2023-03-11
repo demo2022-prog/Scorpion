@@ -45,6 +45,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(alignmentCenter()), businessLogic, SLOT(alignmentCenter()));
     connect(mainMenu,SIGNAL(alignmentRight()), businessLogic, SLOT(alignmentRight()));
 
+    connect(mainMenu,SIGNAL(selectFont()), businessLogic, SLOT(selectFont()));
+    connect(mainMenu,SIGNAL(selectDedicatedFont()), businessLogic, SLOT(selectDedicatedFont()));
+
     connect(mainMenu,SIGNAL(copy()), businessLogic, SLOT(copy()));
     connect(mainMenu,SIGNAL(paste()), businessLogic, SLOT(paste()));
     connect(mainMenu,SIGNAL(cut()), businessLogic, SLOT(cut()));
@@ -61,12 +64,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(toolBar,&ToolBar::alignmentCenter, businessLogic, &BusinessLogic::alignmentCenter);
     connect(toolBar,&ToolBar::alignmentRight, businessLogic, &BusinessLogic::alignmentRight);
 
+    connect(toolBar,&ToolBar::selectFont, businessLogic, &BusinessLogic::selectFont);
+    connect(toolBar,&ToolBar::selectDedicatedFont, businessLogic, &BusinessLogic::selectDedicatedFont);
+
     connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
 
     connect(businessLogic, SIGNAL(newDocument(Document*)), viewDockuments, SLOT(addDocument(Document*)));
 
     connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
-
 }
 
 MainWindow::~MainWindow()
