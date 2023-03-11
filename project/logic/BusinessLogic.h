@@ -40,6 +40,10 @@ public slots:
 
     void cut();
 
+    void selectFont();
+
+    void selectDedicatedFont();
+
 
 private slots:
     void textChanged();

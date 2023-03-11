@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QFontDialog>
 
 
 BusinessLogic::BusinessLogic(QWidget *parent)
@@ -106,6 +107,37 @@ void BusinessLogic::cut()
 {
     if(senderDocument)
         senderDocument->getTextEdit()->cut();
+}
+
+void BusinessLogic::selectFont()
+{
+    if(senderDocument){
+        QFont font = senderDocument->getTextEdit()->font();
+        QFontDialog fntDlg(font, this);
+
+        bool buttonOk[] = {true};
+        font = fntDlg.getFont(buttonOk);
+
+        if(buttonOk[0])
+            senderDocument->getTextEdit()->setFont(font);
+    }
+}
+
+void BusinessLogic::selectDedicatedFont()
+{
+    if(senderDocument){
+        QFont font = senderDocument->getTextEdit()->textCursor().charFormat().font();
+        QFontDialog fntDlg(font, this);
+
+        bool buttonOk[] = {true};
+        font = fntDlg.getFont(buttonOk);
+
+        if(buttonOk[0]){
+            QTextCharFormat cfmt;
+            cfmt.setFont(font);
+            senderDocument->getTextEdit()->textCursor().setCharFormat(cfmt);
+        }
+    }
 }
 
 void BusinessLogic::activeDocument(Document *document)
