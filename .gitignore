@@ -22,3 +22,7 @@
 *.cxxflags
 *.cflags
 *.txt.user
+
+# Build directory
+
+build-*
