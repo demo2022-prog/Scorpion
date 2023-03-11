@@ -92,6 +92,10 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     action->setIcon(QIcon(":/images/Icons/typographyMouse.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSelectDedicatedFont()));
 
+    action = addAction(formattingMenu, tr("&Change Font Color"), "");
+    action->setIcon(QIcon(":/images/Icons/font_color.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeFontColor()));
+
     formattingMenu->addSeparator();
 
     action = addAction(formattingMenu, tr("&Alignment Left"), "");
@@ -194,6 +198,11 @@ void MainMenu::onSelectFont()
 void MainMenu::onSelectDedicatedFont()
 {
     emit selectDedicatedFont();
+}
+
+void MainMenu::onChangeFontColor()
+{
+    emit changeFontColor();
 }
 
 void MainMenu::onAlignmentLeft()

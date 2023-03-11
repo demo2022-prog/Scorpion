@@ -62,5 +62,6 @@
         <file>images/Styles/VisualScript.qss</file>
         <file>images/Styles/Webmas.qss</file>
         <file>images/Styles/WordOffice.qss</file>
+        <file>images/Icons/font_color.png</file>
     </qresource>
 </RCC>
