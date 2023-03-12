@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QTest>
-#include "../project/logic/Document.h"
+#include "Document.h"
 
 class Test_Document : public QObject
 {

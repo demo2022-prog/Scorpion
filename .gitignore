@@ -24,5 +24,4 @@
 *.txt.user
 
 # Build directory
-
 build-*
