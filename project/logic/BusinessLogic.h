@@ -46,6 +46,8 @@ public slots:
 
     void changeFontColor();
 
+    void printer();
+
 
 private slots:
     void textChanged();

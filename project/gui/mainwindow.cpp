@@ -12,6 +12,12 @@
 #include <ParametersWidget.h>
 #include <toolbar.h>
 
+#include <QPrintDialog>
+
+#include <QPrinter>
+
+
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -34,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),aboutWgt, SLOT(show()));
     connect(mainMenu,SIGNAL(parameters()),parametersWgt, SLOT(show()));
+    connect(mainMenu,SIGNAL(printer()),businessLogic, SLOT(printer()));
 
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
@@ -67,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(toolBar,&ToolBar::selectFont, businessLogic, &BusinessLogic::selectFont);
     connect(toolBar,&ToolBar::selectDedicatedFont, businessLogic, &BusinessLogic::selectDedicatedFont);
+    connect(toolBar,&ToolBar::printer, businessLogic, &BusinessLogic::printer);
 
     connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
 
