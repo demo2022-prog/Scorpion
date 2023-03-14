@@ -23,6 +23,7 @@ signals:
     // Tools
     void parameters();
     void printer();
+    void changeView(QString nameView);
 
     // Formatting
     void copyFont();
@@ -53,6 +54,8 @@ private slots:
     // Tools
     void onParameters();
     void onPrinter();
+    void onChangeOnMDI();
+    void onChangeOnTAB();
 
     //Formatting
     void onCopyFont();

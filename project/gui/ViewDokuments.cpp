@@ -8,7 +8,7 @@
 #include <QLabel>
 #include <QMdiSubWindow>
 
-#include <QPushButton>
+//#include <QPushButton>
 
 ViewDokuments::ViewDokuments(QWidget *parent)
 {
@@ -35,21 +35,21 @@ ViewDokuments::ViewDokuments(QWidget *parent)
 
     rootLayout->addWidget(tabWidget);
 
-    QGridLayout *gridLayout = new QGridLayout();
+//    QGridLayout *gridLayout = new QGridLayout();
 
-    auto mdiButton = new QPushButton("MDI", this);
-    gridLayout->addWidget(mdiButton);
-    connect(mdiButton,&QPushButton::clicked, this, [&] () {
-        changeView("MDI");
-    });
-    auto tabButton = new QPushButton("TAB", this);
-    gridLayout->addWidget(tabButton);
-    connect(tabButton,&QPushButton::clicked, this, [&] () {
-        changeView("TAB");
-    });
+//    auto mdiButton = new QPushButton("MDI", this);
+//    gridLayout->addWidget(mdiButton);
+//    connect(mdiButton,&QPushButton::clicked, this, [&] () {
+//        changeView("MDI");
+//    });
+//    auto tabButton = new QPushButton("TAB", this);
+//    gridLayout->addWidget(tabButton);
+//    connect(tabButton,&QPushButton::clicked, this, [&] () {
+//        changeView("TAB");
+//    });
 
 
-    rootLayout->addLayout(gridLayout);
+//    rootLayout->addLayout(gridLayout);
 
     if(isMDI)
         tabWidget->close();
