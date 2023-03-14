@@ -24,6 +24,8 @@ public slots:
 private slots:
     void onActivatedWindow(QMdiSubWindow* window);
 
+    void onActivatedTab(int index);
+
     void onCloseDocument(int index);
 
     void changeView(QString nameWidget);

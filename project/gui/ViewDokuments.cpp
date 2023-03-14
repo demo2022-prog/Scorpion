@@ -31,6 +31,7 @@ ViewDokuments::ViewDokuments(QWidget *parent)
     tabWidget->setTabsClosable(true);
 
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(onCloseDocument(int)));
+    connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onActivatedTab(int)));
 
     rootLayout->addWidget(tabWidget);
 
@@ -54,82 +55,6 @@ ViewDokuments::ViewDokuments(QWidget *parent)
         tabWidget->close();
     else
         mdiAria->close();
-}
-
-void ViewDokuments::onActivatedWindow(QMdiSubWindow *window)
-{
-    if(window){
-        senderSubWindow = window;        
-
-        for(auto chaild : window->widget()->children()){
-            Document *document = qobject_cast<Document *>(chaild);
-
-            if(document){
-                emit activeDocument(document);
-            }
-        }
-    }
-    else{
-        senderSubWindow = nullptr;
-        emit activeDocument(nullptr);
-    }
-}
-
-void ViewDokuments::onCloseDocument(int index)
-{
-    qDebug() << "tab::close" << "index:" << index;
-
-    auto wgt = tabWidget->widget(index);
-
-    for(auto chaild : wgt->children()){
-        Document *document = qobject_cast<Document *>(chaild);
-
-        if(document){
-            qDebug() << "DEL_TAB_1" << widgets;
-            widgets.remove(document->getIndex());
-            qDebug() << "DEL_TAB_2" << widgets;
-        }
-    }
-
-    tabWidget->removeTab(index);
-
-}
-
-void ViewDokuments::changeView(QString nameWidget)
-{
-    if(nameWidget == "MDI"){
-        if(isMDI){
-            return;
-        }
-        isMDI = true;
-        tabWidget->clear();
-        tabWidget->close();
-        mdiAria->show();
-
-        for(auto i : widgets){
-            QMdiSubWindow * subWindow = mdiAria->addSubWindow(i);
-            subWindow->installEventFilter(this);
-            subWindow->setAttribute(Qt::WA_DeleteOnClose, true);
-            i->show();
-        }
-    }
-
-    if(nameWidget == "TAB"){
-        if(!isMDI){
-            return;
-        }
-        isMDI = false;
-        mdiAria->closeAllSubWindows();
-        mdiAria->close();
-        tabWidget->show();
-
-        QMapIterator<int, QWidget*> i(widgets);
-        while (i.hasNext()) {
-            i.next();
-            tabWidget->insertTab(i.key(), i.value(), i.value()->windowIcon(), i.value()->windowTitle());
-            i.value()->show();
-        }
-    }
 }
 
 void ViewDokuments::addDocument(Document *document)
@@ -161,9 +86,6 @@ void ViewDokuments::addDocument(Document *document)
     index++;
 
    wgt->show();
-
-   //qDebug() << "ADD" << widgets;
-
 }
 
 QWidget *ViewDokuments::createWidget(Document *document)
@@ -203,13 +125,31 @@ void ViewDokuments::changeNameAndPathInWgt(Document * document)
     if(!document){
         qDebug() << "DEBUG:" << "EMPTY DOCUMENT";
     }
+    if(isMDI){
+        if(senderSubWindow){
+            QString newName = document->getName();
+            qDebug() << "DEBUG:" << "NEW NAME" << newName;
+            senderSubWindow->widget()->setWindowTitle(newName);
 
-    if(senderSubWindow){
+            for(auto chaild : senderSubWindow->widget()->children()){
+                QLabel *label = qobject_cast<QLabel *>(chaild);
+
+                if(label){
+                    label->setText("PATH:" + document->getPath());
+                }
+            }
+
+            senderSubWindow = nullptr;
+        }
+    }
+    else{
+        auto wgt = tabWidget->currentWidget();
         QString newName = document->getName();
         qDebug() << "DEBUG:" << "NEW NAME" << newName;
-        senderSubWindow->widget()->setWindowTitle(newName);
+        wgt->setWindowTitle(newName);
+        tabWidget->setTabText(tabWidget->currentIndex(),newName);
 
-        for(auto chaild : senderSubWindow->widget()->children()){
+        for(auto chaild : wgt->children()){
             QLabel *label = qobject_cast<QLabel *>(chaild);
 
             if(label){
@@ -217,8 +157,23 @@ void ViewDokuments::changeNameAndPathInWgt(Document * document)
             }
         }
 
-        senderSubWindow = nullptr;
+        tabWidget->setCurrentWidget(wgt);
+
     }
+}
+
+
+void ViewDokuments::onCloseDocument(int index)
+{
+    auto wgt = tabWidget->widget(index);
+
+    for(auto chaild : wgt->children()){
+        Document *document = qobject_cast<Document *>(chaild);
+        if(document)
+            widgets.remove(document->getIndex());
+    }
+
+    tabWidget->removeTab(index);
 }
 
 bool ViewDokuments::eventFilter(QObject *object, QEvent *event)
@@ -229,20 +184,13 @@ bool ViewDokuments::eventFilter(QObject *object, QEvent *event)
             case QEvent::Close:
             {
                 QMdiSubWindow * subWindow = dynamic_cast<QMdiSubWindow*>(object);
-                qDebug() << "eventFilter::close";
-                //Q_ASSERT (subWindow != NULL);
-
                 if(subWindow)
-
                     for(auto chaild : subWindow->widget()->children()){
-                            Document *document = qobject_cast<Document *>(chaild);
-                            if(document){
-                                qDebug() << "DEL_MDI_1" << widgets;
-                                widgets.remove(document->getIndex());
-                                qDebug() << "DEL_MDI_2" << widgets;
-                            }
-                        }
+                        Document *document = qobject_cast<Document *>(chaild);
+                        if(document)
+                            widgets.remove(document->getIndex());
 
+                    }
                 break;
             }
             default:
@@ -252,12 +200,78 @@ bool ViewDokuments::eventFilter(QObject *object, QEvent *event)
     return QObject::eventFilter(object, event);
 }
 
+
+void ViewDokuments::changeView(QString nameWidget)
+{
+    if(nameWidget == "MDI"){
+        if(isMDI){
+            return;
+        }
+        isMDI = true;
+        tabWidget->clear();
+        tabWidget->close();
+        mdiAria->show();
+
+        for(auto i : widgets){
+            QMdiSubWindow * subWindow = mdiAria->addSubWindow(i);
+            subWindow->installEventFilter(this);
+            subWindow->setAttribute(Qt::WA_DeleteOnClose, true);
+            i->show();
+        }
+    }
+
+    if(nameWidget == "TAB"){
+        if(!isMDI){
+            return;
+        }
+        isMDI = false;
+        mdiAria->closeAllSubWindows();
+        mdiAria->close();
+        tabWidget->show();
+
+        QMapIterator<int, QWidget*> i(widgets);
+        while (i.hasNext()) {
+            i.next();
+            tabWidget->insertTab(i.key(), i.value(), i.value()->windowIcon(), i.value()->windowTitle());
+            i.value()->show();
+        }
+    }
+}
+
+void ViewDokuments::onActivatedWindow(QMdiSubWindow *window)
+{
+    if(window){
+        senderSubWindow = window;
+
+        for(auto chaild : window->widget()->children()){
+            Document *document = qobject_cast<Document *>(chaild);
+
+            if(document){
+                emit activeDocument(document);
+            }
+        }
+    }
+    else{
+        senderSubWindow = nullptr;
+        emit activeDocument(nullptr);
+    }
+}
+
+void ViewDokuments::onActivatedTab(int index)
+{
+    auto wgt = tabWidget->widget(index);
+    if(wgt)
+        for(auto chaild : wgt->children()){
+            Document *document = qobject_cast<Document *>(chaild);
+            if(document)
+                emit activeDocument(document);
+        }
+}
+
+
 ViewDokuments::~ViewDokuments()
 {
-//    const auto size = documents.size();
-//    for(int i = 0; i < size; i++){
-//         documents.pop_back();
-//    }
+    widgets.clear();
 }
 
 
