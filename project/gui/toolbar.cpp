@@ -32,6 +32,9 @@ ToolBar::ToolBar(QWidget *parent): QWidget(parent)
     Bar->addSeparator();
     Bar->addAction(QIcon(":/images/Icons/printer.png"),"Printer", this, SLOT(onPrinter()));
     Bar->addSeparator();
+    Bar->addAction(QIcon(":/images/Icons/MdiView.png"),"Printer", this, SLOT(onChangeOnMDI()));
+    Bar->addAction(QIcon(":/images/Icons/TabView.png"),"Printer", this, SLOT(onChangeOnTAB()));
+    Bar->addSeparator();
 }
 
 void ToolBar::onNewFile()
@@ -103,4 +106,14 @@ void ToolBar::onCut()
 void ToolBar::onPrinter()
 {
     emit printer();
+}
+
+void ToolBar::onChangeOnMDI()
+{
+    emit changeView("MDI");
+}
+
+void ToolBar::onChangeOnTAB()
+{
+    emit changeView("TAB");
 }

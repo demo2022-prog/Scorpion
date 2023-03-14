@@ -60,6 +60,16 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     action->setIcon(QIcon(":/images/Icons/printer.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
 
+    toolsMenu->addSeparator();
+
+    action = addAction(toolsMenu, tr("&MDI"));
+    action->setIcon(QIcon(":/images/Icons/MdiView.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeOnMDI()));
+
+    action = addAction(toolsMenu, tr("&TAB"));
+    action->setIcon(QIcon(":/images/Icons/TabView.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeOnTAB()));
+
     menuBar->addMenu(toolsMenu);
 
     auto formattingMenu = new QMenu(tr("Formatting"), menuBar);
@@ -177,6 +187,16 @@ void MainMenu::onParameters()
 void MainMenu::onPrinter()
 {
     emit printer();
+}
+
+void MainMenu::onChangeOnMDI()
+{
+    emit changeView("MDI");
+}
+
+void MainMenu::onChangeOnTAB()
+{
+    emit changeView("TAB");
 }
 
 //Formatting

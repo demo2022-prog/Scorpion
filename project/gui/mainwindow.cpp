@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(paste()), businessLogic, SLOT(paste()));
     connect(mainMenu,SIGNAL(cut()), businessLogic, SLOT(cut()));
 
+    connect(mainMenu,SIGNAL(changeView(QString)), viewDockuments, SLOT(changeView(QString)));
+
     connect(toolBar,&ToolBar::newFile, businessLogic, &BusinessLogic::createNewDocument);
     connect(toolBar,&ToolBar::openFile, businessLogic, &BusinessLogic::openFile);
     connect(toolBar,SIGNAL(saveFile()), businessLogic, SLOT(saveFile()));
@@ -75,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(toolBar,&ToolBar::selectFont, businessLogic, &BusinessLogic::selectFont);
     connect(toolBar,&ToolBar::selectDedicatedFont, businessLogic, &BusinessLogic::selectDedicatedFont);
     connect(toolBar,&ToolBar::printer, businessLogic, &BusinessLogic::printer);
+
+    connect(toolBar,SIGNAL(changeView(QString)), viewDockuments, SLOT(changeView(QString)));
 
     connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
 

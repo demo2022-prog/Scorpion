@@ -30,6 +30,7 @@ signals:
 
     // Tools
     void printer();
+    void changeView(QString nameView);
 
 private:
     class QAction* addAction(class QMenu* menu, const QString& name, const QString& shortcut = "");
@@ -54,6 +55,8 @@ private slots:
 
     // Tools
     void onPrinter();
+    void onChangeOnMDI();
+    void onChangeOnTAB();
 
 private:
     class QToolBar* Bar;
