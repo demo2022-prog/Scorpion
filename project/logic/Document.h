@@ -20,11 +20,16 @@ public:
     const QString& getName();
     const QString& getPath();
 
+    int getIndex();
+    void setIndex(int newIndex);
+
 private:
     QString name;
     QString path;
 
     QTextEdit* textEdit;
+
+    int index = 0;
 
 };
 

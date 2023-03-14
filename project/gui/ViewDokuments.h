@@ -2,10 +2,13 @@
 #define VIEWDOKUMENTS_H
 
 #include <QMdiArea>
+#include <QTabWidget>
+#include <QMap>
+
 
 class Document;
 
-class ViewDokuments : public QMdiArea
+class ViewDokuments : public QWidget
 {
     Q_OBJECT
 public:
@@ -21,13 +24,26 @@ public slots:
 private slots:
     void onActivatedWindow(QMdiSubWindow* window);
 
-private:
-    void changeNameAndPathInWgt(Document* document);
+    void onCloseDocument(int index);
+
+    void changeView(QString nameWidget);
 
 private:
-    QList<Document*> documents;
+    QWidget* createWidget(Document *document);
 
+    void changeNameAndPathInWgt(Document* document);   
+
+    bool eventFilter(QObject *object, QEvent *event) override;
+
+private:    
+    int index = 1;
+    QMap<int, QWidget*> widgets;
+
+    QTabWidget* tabWidget;
+    QMdiArea* mdiAria;
     QMdiSubWindow* senderSubWindow;
+
+    bool isMDI = true;
 
 };
 
