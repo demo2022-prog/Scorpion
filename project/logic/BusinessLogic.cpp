@@ -10,6 +10,9 @@
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QColorDialog>
+#include <QPrintDialog>
+
+#include <QPrinter>
 
 
 BusinessLogic::BusinessLogic(QWidget *parent)
@@ -221,3 +224,16 @@ const QString BusinessLogic::getNameFromPath(const QString &path)
     return name;
 }
 
+void BusinessLogic::printer()
+{
+
+
+        QPrinter print_var;
+        QPrintDialog dialog(&print_var, this);
+
+        if (dialog.exec() == QDialog::Accepted)
+            {
+
+                senderDocument->getTextEdit()->print(&print_var);
+    }
+}
