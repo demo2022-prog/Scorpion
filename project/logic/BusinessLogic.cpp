@@ -113,6 +113,22 @@ void BusinessLogic::cut()
         senderDocument->getTextEdit()->cut();
 }
 
+void BusinessLogic::copyFont()
+{
+    if(senderDocument){
+        senderFont = senderDocument->getTextEdit()->font();
+    }
+}
+
+void BusinessLogic::setCopyFont()
+{
+    if(senderDocument){
+        QTextCharFormat cfmt;
+        cfmt.setFont(senderFont);
+        senderDocument->getTextEdit()->setFont(senderFont);
+    }
+}
+
 void BusinessLogic::selectFont()
 {
     if(senderDocument){
