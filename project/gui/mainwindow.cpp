@@ -65,6 +65,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     connect(mainMenu,SIGNAL(changeView(QString)), viewDockuments, SLOT(changeView(QString)));
 
+    connect(mainMenu,SIGNAL(exit()), this, SLOT(close()));
+
     connect(toolBar,&ToolBar::newFile, businessLogic, &BusinessLogic::createNewDocument);
     connect(toolBar,&ToolBar::openFile, businessLogic, &BusinessLogic::openFile);
     connect(toolBar,SIGNAL(saveFile()), businessLogic, SLOT(saveFile()));
