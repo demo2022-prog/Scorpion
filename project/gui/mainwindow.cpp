@@ -52,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(alignmentCenter()), businessLogic, SLOT(alignmentCenter()));
     connect(mainMenu,SIGNAL(alignmentRight()), businessLogic, SLOT(alignmentRight()));
 
+    connect(mainMenu,SIGNAL(copyFont()), businessLogic, SLOT(copyFont()));
+    connect(mainMenu,SIGNAL(setCopyFont()), businessLogic, SLOT(setCopyFont()));
+
     connect(mainMenu,SIGNAL(selectFont()), businessLogic, SLOT(selectFont()));
     connect(mainMenu,SIGNAL(selectDedicatedFont()), businessLogic, SLOT(selectDedicatedFont()));
     connect(mainMenu,SIGNAL(changeFontColor()), businessLogic, SLOT(changeFontColor()));
@@ -73,6 +76,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(toolBar,&ToolBar::alignmentLeft, businessLogic, &BusinessLogic::alignmentLeft);
     connect(toolBar,&ToolBar::alignmentCenter, businessLogic, &BusinessLogic::alignmentCenter);
     connect(toolBar,&ToolBar::alignmentRight, businessLogic, &BusinessLogic::alignmentRight);
+
+    connect(toolBar,SIGNAL(copyFont()), businessLogic, SLOT(copyFont()));
+    connect(toolBar,SIGNAL(setCopyFont()), businessLogic, SLOT(setCopyFont()));
 
     connect(toolBar,&ToolBar::selectFont, businessLogic, &BusinessLogic::selectFont);
     connect(toolBar,&ToolBar::selectDedicatedFont, businessLogic, &BusinessLogic::selectDedicatedFont);

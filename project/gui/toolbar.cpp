@@ -32,8 +32,8 @@ ToolBar::ToolBar(QWidget *parent): QWidget(parent)
     Bar->addSeparator();
     Bar->addAction(QIcon(":/images/Icons/printer.png"),"Printer", this, SLOT(onPrinter()));
     Bar->addSeparator();
-    Bar->addAction(QIcon(":/images/Icons/MdiView.png"),"Printer", this, SLOT(onChangeOnMDI()));
-    Bar->addAction(QIcon(":/images/Icons/TabView.png"),"Printer", this, SLOT(onChangeOnTAB()));
+    Bar->addAction(QIcon(":/images/Icons/MdiView.png"),"ChangeOnMDI", this, SLOT(onChangeOnMDI()));
+    Bar->addAction(QIcon(":/images/Icons/TabView.png"),"ChangeOnTAB", this, SLOT(onChangeOnTAB()));
     Bar->addSeparator();
 }
 
