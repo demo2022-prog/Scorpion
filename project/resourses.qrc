@@ -31,37 +31,37 @@
         <file>images/Icons/typographyMouse.png</file>
         <file>images/logo.png</file>
         <file>images/new.png</file>
-        <file>images/Styles/Chatbee.qss</file>
-        <file>images/Styles/Clientor.qss</file>
-        <file>images/Styles/Clocker.qss</file>
-        <file>images/Styles/Combinear.qss</file>
-        <file>images/Styles/Cstartpage.qss</file>
-        <file>images/Styles/Darkeum.qss</file>
-        <file>images/Styles/Diffnes.qss</file>
-        <file>images/Styles/Diplaytap.qss</file>
-        <file>images/Styles/Dtor.qss</file>
-        <file>images/Styles/EasyCode.qss</file>
-        <file>images/Styles/Eclippy.qss</file>
-        <file>images/Styles/ExcelOffice.qss</file>
-        <file>images/Styles/Fibers.qss</file>
-        <file>images/Styles/Fibrary.qss</file>
-        <file>images/Styles/Genetive.qss</file>
-        <file>images/Styles/Geoo.qss</file>
-        <file>images/Styles/HackBook.qss</file>
-        <file>images/Styles/Integrid.qss</file>
-        <file>images/Styles/Irrorater.qss</file>
-        <file>images/Styles/MailSy.qss</file>
-        <file>images/Styles/Medize.qss</file>
-        <file>images/Styles/Photoxo.qss</file>
-        <file>images/Styles/PicPax.qss</file>
-        <file>images/Styles/Remover.qss</file>
-        <file>images/Styles/Scalcula.qss</file>
-        <file>images/Styles/Takezo.qss</file>
-        <file>images/Styles/TCobra.qss</file>
-        <file>images/Styles/Toolery.qss</file>
-        <file>images/Styles/VisualScript.qss</file>
-        <file>images/Styles/Webmas.qss</file>
-        <file>images/Styles/WordOffice.qss</file>
         <file>images/Icons/font_color.png</file>
+        <file>styles/Chatbee.qss</file>
+        <file>styles/Clientor.qss</file>
+        <file>styles/Clocker.qss</file>
+        <file>styles/Combinear.qss</file>
+        <file>styles/Cstartpage.qss</file>
+        <file>styles/Darkeum.qss</file>
+        <file>styles/Diffnes.qss</file>
+        <file>styles/Diplaytap.qss</file>
+        <file>styles/Dtor.qss</file>
+        <file>styles/EasyCode.qss</file>
+        <file>styles/Eclippy.qss</file>
+        <file>styles/ExcelOffice.qss</file>
+        <file>styles/Fibers.qss</file>
+        <file>styles/Fibrary.qss</file>
+        <file>styles/Genetive.qss</file>
+        <file>styles/Geoo.qss</file>
+        <file>styles/HackBook.qss</file>
+        <file>styles/Integrid.qss</file>
+        <file>styles/Irrorater.qss</file>
+        <file>styles/MailSy.qss</file>
+        <file>styles/Medize.qss</file>
+        <file>styles/Photoxo.qss</file>
+        <file>styles/PicPax.qss</file>
+        <file>styles/Remover.qss</file>
+        <file>styles/Scalcula.qss</file>
+        <file>styles/Takezo.qss</file>
+        <file>styles/TCobra.qss</file>
+        <file>styles/Toolery.qss</file>
+        <file>styles/VisualScript.qss</file>
+        <file>styles/Webmas.qss</file>
+        <file>styles/WordOffice.qss</file>
     </qresource>
 </RCC>

@@ -34,7 +34,7 @@ ParametersWidget::~ParametersWidget()
 void ParametersWidget::loadStyle()
 {
     int index = 0;
-    QString path = ":/images/Styles/";   // path resource style
+    QString path = ":/styles/";   // path resource style
     int lenghtExt = 4;                   //  lenght ".qss"
     QDirIterator ItR(path, QDir::Files);
     styles.push_back("");
