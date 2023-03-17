@@ -109,6 +109,7 @@ void MainWindow::setupGui()
     auto mainLayout = new QVBoxLayout();    
 
     mainMenu->setMinimumHeight(30);
+    mainMenu->setMinimumWidth(300);
     mainLayout->addWidget(mainMenu);
 
     toolBar->setMinimumHeight(40);

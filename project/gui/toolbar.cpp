@@ -2,6 +2,8 @@
 
 #include <QToolBar>
 
+#include <QHBoxLayout>
+
 #include <QDebug>
 
 ToolBar::ToolBar(QWidget *parent): QWidget(parent)
@@ -35,6 +37,11 @@ ToolBar::ToolBar(QWidget *parent): QWidget(parent)
     Bar->addAction(QIcon(":/images/Icons/MdiView.png"),"ChangeOnMDI", this, SLOT(onChangeOnMDI()));
     Bar->addAction(QIcon(":/images/Icons/TabView.png"),"ChangeOnTAB", this, SLOT(onChangeOnTAB()));
     Bar->addSeparator();
+
+    auto rootLayout = new QHBoxLayout();
+    this->setLayout(rootLayout);
+    rootLayout->addWidget(Bar);
+
 }
 
 void ToolBar::onNewFile()

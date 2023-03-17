@@ -1,15 +1,13 @@
 #include "MainMenu.h"
 
 #include <QMenuBar>
-//#include <QIcon>
+
 #include <QShortcut>
 
 #include <QDebug>
 
 MainMenu::MainMenu(QWidget *parent): QWidget(parent)
 {
-    //resize(50,50);
-
     menuBar = new QMenuBar(this);
 
     auto fileMenu = new QMenu(tr("File"), menuBar);
