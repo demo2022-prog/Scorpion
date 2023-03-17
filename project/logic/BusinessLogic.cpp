@@ -187,7 +187,7 @@ void BusinessLogic::textChanged()
 {
     QString text = senderDocument->getTextEdit()->toPlainText();
 
-    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), Qt::SkipEmptyParts).count());
+    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), QString::SplitBehavior::SkipEmptyParts).count());
 
     QString strings = QString::number(text.split("\n").count());
 
