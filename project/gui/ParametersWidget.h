@@ -2,7 +2,6 @@
 #define PARAMETERSWIDGET_H
 
 #include <QWidget>
-#include <QSettings>
 
 namespace Ui {
 class ParametersWidget;
@@ -13,10 +12,10 @@ class ParametersWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ParametersWidget(QSettings *setFile = nullptr, QWidget *parent = nullptr);
+    explicit ParametersWidget(QWidget *parent = nullptr);
     ~ParametersWidget();
 
-    QSettings* setFile;
+
 private slots:
     void on_selectStyleBox_activated(int index);
 
@@ -33,6 +32,7 @@ private:
 
 private:
     Ui::ParametersWidget *ui;
+    class QSettings* settings;
 };
 
 #endif // PARAMETERSWIDGET_H

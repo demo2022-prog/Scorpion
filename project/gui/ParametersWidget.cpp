@@ -1,5 +1,8 @@
 #include "ParametersWidget.h"
 #include "ui_ParametersWidget.h"
+
+#include <QSettings>
+
 #include <QDir>
 #include <QDirIterator>
 #include <QFile>
@@ -7,21 +10,20 @@
 #include <QStyleFactory>
 #include <QDebug>
 
-ParametersWidget::ParametersWidget(QSettings *set, QWidget *parent) :
-    setFile(set), QWidget(parent),
+ParametersWidget::ParametersWidget(QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::ParametersWidget)
 {
     ui->setupUi(this);
     setWindowIcon(QIcon(":/images/Icons/settings.png"));
-    setWindowTitle(tr("Parameters"));   
+    setWindowTitle(tr("Parameters"));
+
+    // необходимо разработать отдельный класс Setting со связкой слотами и сигналами
+    settings = new QSettings("settings.ini", QSettings::IniFormat, this);
 
     ui->labelStyleBox->setText(tr("Style:"));
     ui->okButton->setText(tr("OK"));
     ui->cancelButton->setText(tr("Cancel"));
-
-//    setFile->beginGroup("Style");
-//    auto index = setFile->value("Style",0).toInt();
-//    setFile->endGroup();
 
     this->loadStyle();
 }
@@ -33,7 +35,10 @@ ParametersWidget::~ParametersWidget()
 
 void ParametersWidget::loadStyle()
 {
-    int index = 0;
+    settings->beginGroup("Style");
+        int index = settings->value("Style",0).toInt();
+    settings->endGroup();
+
     QString path = ":/styles/";   // path resource style
     int lenghtExt = 4;                   //  lenght ".qss"
     QDirIterator ItR(path, QDir::Files);
@@ -55,6 +60,8 @@ void ParametersWidget::loadStyle()
     }
 
     ui->selectStyleBox->setCurrentIndex(index);
+
+    setStyleSheet(index);
 }
 
 void ParametersWidget::setStyleSheet(int index)
@@ -71,6 +78,10 @@ void ParametersWidget::setStyleSheet(int index)
 void ParametersWidget::on_selectStyleBox_activated(int index)
 {
     setStyleSheet(index);
+
+    settings->beginGroup("Style");
+        settings->setValue("Style",index);
+    settings->endGroup();
 }
 
 
