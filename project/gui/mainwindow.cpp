@@ -12,6 +12,12 @@
 #include <ParametersWidget.h>
 #include <toolbar.h>
 
+#include <QPrintDialog>
+
+#include <QPrinter>
+
+
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -21,12 +27,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     viewDockuments = new ViewDokuments(this);
     statusBar = new StatusBar(this);
     toolBar = new ToolBar(this);
-
-    // необходимо разработать отдельный класс Setting со связкой слотами и сигналами
-    settings = new QSettings("settings.ini", QSettings::IniFormat, this);
-
     aboutWgt = new AboutWidget();
-    parametersWgt =new ParametersWidget(settings);
+    parametersWgt = new ParametersWidget();
 
     // Размещение графических компонентов
     setupGui();
@@ -34,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // Связи компонентов
     connect(mainMenu,SIGNAL(about()),aboutWgt, SLOT(show()));
     connect(mainMenu,SIGNAL(parameters()),parametersWgt, SLOT(show()));
+    connect(mainMenu,SIGNAL(printer()),businessLogic, SLOT(printer()));
 
     connect(mainMenu,SIGNAL(newFile()),businessLogic, SLOT(createNewDocument()));
     connect(mainMenu,SIGNAL(openFile()),businessLogic, SLOT(openFile()));
@@ -45,9 +48,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(mainMenu,SIGNAL(alignmentCenter()), businessLogic, SLOT(alignmentCenter()));
     connect(mainMenu,SIGNAL(alignmentRight()), businessLogic, SLOT(alignmentRight()));
 
+    connect(mainMenu,SIGNAL(copyFont()), businessLogic, SLOT(copyFont()));
+    connect(mainMenu,SIGNAL(setCopyFont()), businessLogic, SLOT(setCopyFont()));
+
+    connect(mainMenu,SIGNAL(selectFont()), businessLogic, SLOT(selectFont()));
+    connect(mainMenu,SIGNAL(selectDedicatedFont()), businessLogic, SLOT(selectDedicatedFont()));
+    connect(mainMenu,SIGNAL(changeFontColor()), businessLogic, SLOT(changeFontColor()));
+
     connect(mainMenu,SIGNAL(copy()), businessLogic, SLOT(copy()));
     connect(mainMenu,SIGNAL(paste()), businessLogic, SLOT(paste()));
     connect(mainMenu,SIGNAL(cut()), businessLogic, SLOT(cut()));
+
+    connect(mainMenu,SIGNAL(changeView(QString)), viewDockuments, SLOT(changeView(QString)));
+
+    connect(mainMenu,SIGNAL(exit()), this, SLOT(close()));
 
     connect(toolBar,&ToolBar::newFile, businessLogic, &BusinessLogic::createNewDocument);
     connect(toolBar,&ToolBar::openFile, businessLogic, &BusinessLogic::openFile);
@@ -61,17 +75,25 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(toolBar,&ToolBar::alignmentCenter, businessLogic, &BusinessLogic::alignmentCenter);
     connect(toolBar,&ToolBar::alignmentRight, businessLogic, &BusinessLogic::alignmentRight);
 
+    connect(toolBar,SIGNAL(copyFont()), businessLogic, SLOT(copyFont()));
+    connect(toolBar,SIGNAL(setCopyFont()), businessLogic, SLOT(setCopyFont()));
+
+    connect(toolBar,&ToolBar::selectFont, businessLogic, &BusinessLogic::selectFont);
+    connect(toolBar,&ToolBar::selectDedicatedFont, businessLogic, &BusinessLogic::selectDedicatedFont);
+    connect(toolBar,&ToolBar::printer, businessLogic, &BusinessLogic::printer);
+
+    connect(toolBar,SIGNAL(changeView(QString)), viewDockuments, SLOT(changeView(QString)));
+
     connect(viewDockuments, SIGNAL(activeDocument(Document*)),businessLogic, SLOT(activeDocument(Document*)));
 
     connect(businessLogic, SIGNAL(newDocument(Document*)), viewDockuments, SLOT(addDocument(Document*)));
 
     connect(businessLogic, SIGNAL(textData(QString,QString)), statusBar, SLOT(showTextData(QString,QString)));
-
 }
 
 MainWindow::~MainWindow()
 {
-    delete settings;
+    delete parametersWgt;
     delete aboutWgt;
 }
 
@@ -87,6 +109,7 @@ void MainWindow::setupGui()
     auto mainLayout = new QVBoxLayout();    
 
     mainMenu->setMinimumHeight(30);
+    mainMenu->setMinimumWidth(300);
     mainLayout->addWidget(mainMenu);
 
     toolBar->setMinimumHeight(40);

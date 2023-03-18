@@ -19,8 +19,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 
 find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED )
 
+
+configure_file(project/images/logo.png images/logo.png COPYONLY)
 
 #=================== INCLUSION OF Project Files ====================#
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/project")
@@ -58,4 +60,4 @@ target_include_directories(Scorpion PRIVATE ${LOGIC_DIR})
 target_include_directories(Scorpion PRIVATE ${FORMS_DIR})
 
 #===================== LINKING LIBRARIES =======================#
-target_link_libraries(Scorpion Qt5::Widgets)
+target_link_libraries(Scorpion Qt5::Widgets Qt5::PrintSupport )

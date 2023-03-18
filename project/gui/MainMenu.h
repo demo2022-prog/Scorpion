@@ -23,11 +23,13 @@ signals:
     // Tools
     void parameters();
     void printer();
+    void changeView(QString nameView);
 
     // Formatting
     void copyFont();
     void setCopyFont();
     void selectFont();
+    void changeFontColor();
     void selectDedicatedFont();
     void alignmentLeft();
     void alignmentCenter();
@@ -52,12 +54,15 @@ private slots:
     // Tools
     void onParameters();
     void onPrinter();
+    void onChangeOnMDI();
+    void onChangeOnTAB();
 
     //Formatting
     void onCopyFont();
     void onSetCopyFont();
     void onSelectFont();
     void onSelectDedicatedFont();
+    void onChangeFontColor();
     void onAlignmentLeft();
     void onAlignmentCenter();
     void onAlignmentRight();

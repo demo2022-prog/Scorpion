@@ -1,15 +1,13 @@
 #include "MainMenu.h"
 
 #include <QMenuBar>
-//#include <QIcon>
+
 #include <QShortcut>
 
 #include <QDebug>
 
 MainMenu::MainMenu(QWidget *parent): QWidget(parent)
 {
-    //resize(50,50);
-
     menuBar = new QMenuBar(this);
 
     auto fileMenu = new QMenu(tr("File"), menuBar);
@@ -60,6 +58,16 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     action->setIcon(QIcon(":/images/Icons/printer.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onPrinter()));
 
+    toolsMenu->addSeparator();
+
+    action = addAction(toolsMenu, tr("&MDI"));
+    action->setIcon(QIcon(":/images/Icons/MdiView.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeOnMDI()));
+
+    action = addAction(toolsMenu, tr("&TAB"));
+    action->setIcon(QIcon(":/images/Icons/TabView.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeOnTAB()));
+
     menuBar->addMenu(toolsMenu);
 
     auto formattingMenu = new QMenu(tr("Formatting"), menuBar);
@@ -91,6 +99,10 @@ MainMenu::MainMenu(QWidget *parent): QWidget(parent)
     action = addAction(formattingMenu, tr("&Select Dedicated Font"), "");
     action->setIcon(QIcon(":/images/Icons/typographyMouse.png"));
     connect(action, SIGNAL(triggered()), this, SLOT(onSelectDedicatedFont()));
+
+    action = addAction(formattingMenu, tr("&Change Font Color"), "");
+    action->setIcon(QIcon(":/images/Icons/font_color.png"));
+    connect(action, SIGNAL(triggered()), this, SLOT(onChangeFontColor()));
 
     formattingMenu->addSeparator();
 
@@ -175,6 +187,16 @@ void MainMenu::onPrinter()
     emit printer();
 }
 
+void MainMenu::onChangeOnMDI()
+{
+    emit changeView("MDI");
+}
+
+void MainMenu::onChangeOnTAB()
+{
+    emit changeView("TAB");
+}
+
 //Formatting
 void MainMenu::onCopyFont()
 {
@@ -194,6 +216,11 @@ void MainMenu::onSelectFont()
 void MainMenu::onSelectDedicatedFont()
 {
     emit selectDedicatedFont();
+}
+
+void MainMenu::onChangeFontColor()
+{
+    emit changeFontColor();
 }
 
 void MainMenu::onAlignmentLeft()

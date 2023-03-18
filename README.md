@@ -1,81 +1,70 @@
-<!DOCTYPE html>
-<html>
-<body>
-<H1 align="center">====== Scorpion ======</H1>
-</body>
-<body lang="ru-RU" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
-<h3>Описание</h3></p>
+## Scorpion: Текстовый редактор
+*Scorpion: Текстовый редактор с графическим интерфейсом и открытым исходным кодом, разработанный для операционных систем Debian Linux и Windows.*<br>
+`Распространяется под лицензией GNU GENERAL PUBLIC LICENSE.`
 
-><p style="line-height: 100%; margin-bottom: 0cm"><b>Scorpion</b>
->свободный многооконный текстовый
->редактор с открытым исходным кодом.</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>Адрес
->git-репозитория:</b>
-><a href="https://github.com/demo2022-prog/Scorpion.git">https://github.com/demo2022-prog/Scorpion.git</a></p>
-<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+## Требования для сборки программы
+Перечень основных требований для установки программы:
 
-</p>
-<p style="line-height: 100%; margin-bottom: 0cm"><h3>Требования</h3></p>
+* Операционная система `Linux` на базе ядра `debian` или `Windows 7 и старше`;
+* Оперативная память не менее `500 Мб`;
+* Процессор `Intel` или `Amd` с тактовой частотой не менее `1300 МГц`;
+* Не менее `1 Гб` дискового пространства;
+* Сетевая карта и доступ к глобальной сети "Интернет";
+* Операционная система `Linux` на базе ядра `debian` или `Windows 7` и старше;
+* Компилятор [g++](https://gcc.gnu.org/) для Linux или набор инструментов разработки программного обеспечения `MSYS2 + MinGW` для Windows;
+* Среда разработки `Qt` версии не ниже 5.14;
+* Система автоматизации сборки `CMake`.
 
-><p style="line-height: 100%; margin-bottom: 0cm">Для сборки
->редактора необходимы библиотеки ОС
->Linux g++, make, cmake, qt.</p>
-<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+## Подготовка к сборке программы
+***[ Linux ]***
+* Документацию по установке и настройке Qt в операционной системе Ubuntu Linux, можно посмотреть [здесь](https://wiki.qt.io/Install_Qt_5_on_Ubuntu);
+* Загрузите и установите [CMake версии не ниже 3.5](https://cmake.org/download/); 
+* Загрузите `*.tar.gz` архив с исходным кодом релиза программы (файл "Source code").<br>
 
-</p>
-<p style="line-height: 100%; margin-bottom: 0cm"><h3>Поставка проекта</h3></p>
+***[ Windows ]***
+* Загрузите и установите [MSYS2](https://www.msys2.org/). Документацию по установке и настройке Qt 5 из MSYS2 можно посмотреть [здесь](https://blog.altuninvv.ru/%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/qt5/12-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D1%80%D0%B5%D0%B4%D1%8B-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8-qt5-%D0%BF%D0%BE%D0%B4-windows?ysclid=lf9o4l3z3h96352824). Также, для установки Qt можно использовать [инсталляционный пакет](https://www.qt.io/download) без загрузки и настройки MSYS2. Документацию по установке и настройке Qt можно посмотреть [здесь](http://inf-w.ru/wp-content/uploads/2019/11/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B0-Qt-creator.pdf);
+* Загрузите и установите [CMake версии не ниже 3.5](https://cmake.org/download/);
+* Загрузите `*.zip или *.tar.gz` архив с исходным кодом релиза программы (*файл "Source code"*).
 
-><p style="font-weight: normal; line-height: 100%; margin-bottom: 0cm">
->Программа поставляется в виде исходного
->кода с правилами сборки cmake в архиве
-><b>Scorpion_v_X_Y.tgz </b>или исходный код загружается
->из общедоступного репозитория.</p>
-<p style="line-height: 100%; margin-bottom: 0cm"><br/>
 
-</p>
-<p style="line-height: 100%; margin-bottom: 0cm"><h3>Сборка проекта</h3></p>
+## Сборка программы
+***[ Linux ]***
+* Открой терминал и перейдите в каталог содержащий загруженный ранее архив с программой. Например, архив с программой находится в рабочем каталоге пользователя с именем *"noname"* - `/home/noname/Source_code.tar.gz`. Для перехода к каталогу с архивом и его распаковки, выполните поочередно следующие команды:
+```
+> cd /home/noname
+> gunzip Scorpion_Release_3.0.tar.gz
+> tar xvf Scorpion_Release_3.0.tar
+```
+* После того, как архив был распакован, можно переходить к сборке программы. Выполните поочередно следующие команды:
+```
+> cd Scorpion_Release_3.0
+> mkdir build
+> cd build
+> cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+> cmake --build .
+```
 
-><p style="line-height: 100%; margin-bottom: 0cm">Для сборки
->выполнить следующие команды:</p>
-><br>
-><p style="line-height: 100%; margin-bottom: 0cm">Произвести
->разархивирование архива:</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>tar -xvzf
->/path/to/Scorpion_v_X_Y.tgz</b></p>
-><br/>
-><p style="line-height: 100%; margin-bottom: 0cm">Войти в
->каталог:</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>cd
->/path/to/Scorpion_v_X_Y</b></p>
-><br/>
-><p style="font-weight: normal; line-height: 100%; margin-bottom: 0cm">
->Создать каталог для сборки и войти в него:</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>mkdir ./build</b></p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>cd ./build</b></p>
-><br/>
-><p style="line-height: 100%; margin-bottom: 0cm">Создать
->правила для работы с исходниками:</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>cmake
->../CmakeLists.txt</b></p>
-><br/>
-><p style="line-height: 100%; margin-bottom: 0cm">Выполнить
->сборку программы:</p>
-><p style="line-height: 100%; margin-bottom: 0cm"><b>make</b></p>
-<br/>
+***[ Windows ]***
+* Распакуйте архив с исходным кодом программы стандартным zip архиватором или воспользуйте любым другим архиватором работающим с zip или tar архивами. Путь для распаковки файлов можно указать например, `C:\Scorpion_Release_3.0`;
+* Запустите командную строку `(cmd.exe)` от имени *"Администратора"* и выполните поочередно следующие команды:
+``` 
+> cd C:\Scorpion_Release_3.0
+> mkdir build
+> cd build
+> cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+> cmake --build .
+```
+## Запуск программы
+***[ Linux ]***
+* Запустите исполняемый файл "Scorpion" из каталога сборки (build):
+```
+> cd /home/noname/Scorpion_Release_3.0/build
+> ./Scorpion
+```
 
-<p style="line-height: 100%; margin-bottom: 0cm"><h3>Правила для работы</h3></p>
-
-><p style="font-weight: normal; line-height: 100%; margin-bottom: 0cm">
-><b>make install</b> — установка программы в ОС;</p>
-><p style="font-weight: normal; line-height: 100%; margin-bottom: 0cm">
-><b>make uninstall</b> — удаление программы из ОС;</p>
-><p style="font-weight: normal; line-height: 100%; margin-bottom: 0cm">
-><b>make clean</b> — очистка для новой сборки.</p>
-<br/>
-
-<p style="line-height: 100%; margin-bottom: 0cm"><h3>Запуск</h3></p>
-
-><p style="line-height: 100%; margin-bottom: 0cm"><span style="font-weight: normal">Для
->запуска выполнить команду </span><b>Scorpion</b></p>
-</body>
-</html>
+***[ Windows ]***
+* Запустите исполняемый файл "Scorpion.exe" из каталога сборки `(build)` в проводнике или из командной строки:
+```
+> cd C:\Scorpion_Release_3.0\build
+> Scorpion.exe
+```

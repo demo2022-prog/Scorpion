@@ -40,6 +40,18 @@ public slots:
 
     void cut();
 
+    void copyFont();
+
+    void setCopyFont();
+
+    void selectFont();
+
+    void selectDedicatedFont();
+
+    void changeFontColor();
+
+    void printer();
+
 
 private slots:
     void textChanged();
@@ -51,6 +63,7 @@ private:
 private:
 
     Document* senderDocument = nullptr;
+    QFont senderFont;
 
 };
 

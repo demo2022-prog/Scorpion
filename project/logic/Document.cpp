@@ -35,3 +35,13 @@ const QString &Document::getPath()
 {
     return path;
 }
+
+int Document::getIndex()
+{
+    return index;
+}
+
+void Document::setIndex(int newIndex)
+{
+    this->index = newIndex;
+}

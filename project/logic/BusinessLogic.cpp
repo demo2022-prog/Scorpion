@@ -8,6 +8,11 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QFontDialog>
+#include <QColorDialog>
+#include <QPrintDialog>
+
+#include <QPrinter>
 
 
 BusinessLogic::BusinessLogic(QWidget *parent)
@@ -108,6 +113,64 @@ void BusinessLogic::cut()
         senderDocument->getTextEdit()->cut();
 }
 
+void BusinessLogic::copyFont()
+{
+    if(senderDocument){
+        senderFont = senderDocument->getTextEdit()->font();
+    }
+}
+
+void BusinessLogic::setCopyFont()
+{
+    if(senderDocument){
+        QTextCharFormat cfmt;
+        cfmt.setFont(senderFont);
+        senderDocument->getTextEdit()->setFont(senderFont);
+    }
+}
+
+void BusinessLogic::selectFont()
+{
+    if(senderDocument){
+        QFont font = senderDocument->getTextEdit()->font();
+        QFontDialog fntDlg(font, this);
+
+        bool buttonOk[] = {true};
+        font = fntDlg.getFont(buttonOk);
+
+        if(buttonOk[0])
+            senderDocument->getTextEdit()->setFont(font);
+    }
+}
+
+void BusinessLogic::selectDedicatedFont()
+{
+    if(senderDocument){
+        QFont font = senderDocument->getTextEdit()->textCursor().charFormat().font();
+        QFontDialog fntDlg(font, this);
+
+        bool buttonOk[] = {true};
+        font = fntDlg.getFont(buttonOk);
+
+        if(buttonOk[0]){
+            QTextCharFormat cfmt;
+            cfmt.setFont(font);
+            senderDocument->getTextEdit()->textCursor().setCharFormat(cfmt);
+        }
+    }
+}
+
+void BusinessLogic::changeFontColor()
+{
+    if(senderDocument){
+        QColor colorFont = senderDocument->getTextEdit()->textColor();
+        colorFont = QColorDialog::getColor(colorFont);
+
+        if(colorFont.isValid())
+            senderDocument->getTextEdit()->setTextColor(colorFont);
+    }
+}
+
 void BusinessLogic::activeDocument(Document *document)
 {
 
@@ -124,7 +187,7 @@ void BusinessLogic::textChanged()
 {
     QString text = senderDocument->getTextEdit()->toPlainText();
 
-    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), Qt::SkipEmptyParts).count());
+    QString words = QString::number(text.split(QRegExp("(\\s|\\n|\\r)+"), QString::SplitBehavior::SkipEmptyParts).count());
 
     QString strings = QString::number(text.split("\n").count());
 
@@ -177,3 +240,16 @@ const QString BusinessLogic::getNameFromPath(const QString &path)
     return name;
 }
 
+void BusinessLogic::printer()
+{
+
+
+        QPrinter print_var;
+        QPrintDialog dialog(&print_var, this);
+
+        if (dialog.exec() == QDialog::Accepted)
+            {
+
+                senderDocument->getTextEdit()->print(&print_var);
+    }
+}

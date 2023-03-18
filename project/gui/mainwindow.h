@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QSettings>
 
 class MainWindow : public QMainWindow
 {
@@ -13,7 +12,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QSettings* settings;
 private:
     void setupGui();
 
